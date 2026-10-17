@@ -30,11 +30,11 @@ Claude computes these, not Fo, because Fo wrote the messages.
 
 ## Install
 
-1. **Copy the sheet tabs.** Create a Google Sheet with the tabs in [`templates/sheet/`](templates/sheet/) (or add them to your existing member sheet). Create an empty Google Doc for outreach.
-2. **Answer the setup questions** in [`setup/questions.md`](setup/questions.md) and save your answers as `rules.yaml`, using [`rules.example.yaml`](rules.example.yaml) as the starting point.
-3. **Set up Fo.** Send the message in [`prompts/install-fo.md`](prompts/install-fo.md) to your Fo. You need a Wajo account on the OG Fo plan, with Google and your platform connected.
-4. **Set up the Claude checker** as a scheduled task, using [`prompts/claude-checker.md`](prompts/claude-checker.md).
-5. **Pick your platform adapter** in [`adapters/`](adapters/). Skool, email and hand-send are available; hand-send always works.
+You need a Wajo account on the OG Fo plan, with Google and your community platform connected, and your member list in a Google Sheet.
+
+1. **Send Fo the install message** in [`prompts/install-fo.md`](prompts/install-fo.md), with your sheet's link. Fo adds the loop's tabs to your sheet (without touching what's there), creates the outreach doc, asks you the [setup questions](setup/questions.md), saves your `rules.yaml`, and schedules the nightly draft and morning call.
+2. **Set up the Claude checker** as a scheduled task, using the prompt Fo sends you at the end of setup (the template is [`prompts/claude-checker.md`](prompts/claude-checker.md)).
+3. **Check your platform adapter** in [`adapters/`](adapters/). Skool, email and hand-send are available; hand-send always works.
 
 ## Try it without real data
 

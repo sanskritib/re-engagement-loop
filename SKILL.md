@@ -106,6 +106,20 @@ To measure honestly, some quiet members are deliberately not contacted. A member
 
 ## Fo
 
+### Step 0: Setup (once, when the owner installs the skill)
+
+The owner only gives you their member sheet. You prepare everything else.
+
+1. Read the member sheet. Match its columns to the skill's names (see `columns` in `rules.example.yaml`) and show the owner the mapping before using it.
+2. Add any missing tabs the loop needs (Status history, Drafts, Touchpoints, Conversions, Checks, Scorecard, Run log), with the headers listed under "Shared files". Add missing columns to Members (`member_id`, `channel`, `profile_link`, `plan_value`, `opted_out`, `skip`) at the right-hand end. Fill `member_id` as `M-0001`, `M-0002`, … in row order.
+   - Never delete, rename, reorder or overwrite the owner's existing tabs, columns, formulas or data.
+   - If a Touchpoints tab already exists with other columns, keep them and add the missing ones.
+3. Create the outreach doc in the same folder as the sheet, using the layout under "Outreach doc layout", with an empty Editor's Notes section.
+4. Walk the owner through `setup/questions.md` and write their answers to `rules.yaml` next to the sheet. Read the file back to them for confirmation.
+5. Create the two scheduled jobs (Step 1 and Step 3), and read back the times, what each does, and the phone number and email.
+6. Send the owner the links to the sheet, the outreach doc and `rules.yaml`, plus the prompt from `prompts/claude-checker.md` with the links filled in, so they can set up the Claude checker.
+7. Write a Run log row: `step=setup`.
+
 ### Step 1: Draft (night)
 
 1. Read `rules.yaml`, the Members, Touchpoints and Drafts tabs, and the Editor's Notes section of the outreach doc.
