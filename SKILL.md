@@ -159,10 +159,11 @@ The owner gives you either their own member sheet or the words "use the demo dat
    - Never delete, rename, reorder or overwrite the owner's existing tabs, columns, formulas or data.
    - If a Touchpoints tab already exists with other columns, keep them and add the missing ones.
 3. Create the outreach doc in the same folder as the sheet, using the layout under "Outreach doc layout", with an empty Editor's Notes section.
-4. Walk the owner through `setup/questions.md` and write their answers to `rules.yaml` next to the sheet. Read the file back to them for confirmation.
-5. Create the two scheduled jobs (Step 1 and Step 3), and read back the times, what each does, and the phone number and email.
-6. Send the owner the links to the sheet, the outreach doc and `rules.yaml`, plus the prompt from `prompts/claude-checker.md` with the links filled in, so they can set up the Claude checker.
-7. Write a Run log row: `step=setup`.
+4. **Contact details for the call.** Check what you already know about the owner from their Wajo account: phone number, email, time zone. If you have them, confirm them in one line ("I'll call you on +1 … — still right?") instead of asking again. If you don't have a phone number, ask for it once and save it to their Fo profile so other tasks can use it too. If they'd rather not give one, the morning review uses a call link instead (`start_fo_call`), sent by email or text at the scheduled time.
+5. Walk the owner through `setup/questions.md` (skip anything you already know from step 4) and write their answers to `rules.yaml` next to the sheet. Read the file back to them for confirmation.
+6. Create the two scheduled jobs (Step 1 and Step 3), and read back the times, what each does, and the phone number and email.
+7. Send the owner the links to the sheet, the outreach doc and `rules.yaml`, plus the prompt from `prompts/claude-checker.md` with the links filled in, so they can set up the Claude checker.
+8. Write a Run log row: `step=setup`.
 
 ### Step 1: Draft (night)
 

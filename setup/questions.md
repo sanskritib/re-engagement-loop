@@ -3,7 +3,7 @@
 Answer these once. The answers become your `rules.yaml`. You can ask Claude or Fo to walk you through them and write the file for you; you check it before it's used.
 
 1. **Who are you, and when should the call come?**
-   Your first name as it should appear on messages, your time zone, the time for the morning call, and the phone number and email for it.
+   Your first name as it should appear on messages, and the time for the morning call. Fo uses the phone number, email and time zone it already has for you and just confirms them; it only asks if they're missing. No phone number? The review comes as a call link instead.
 
 2. **Where do your members live, and where do you reach them?**
    The platform (Skool, Slack, Discord, email, other) and the link to your member sheet. If your sheet's column names differ from the skill's, say which column is which.

@@ -10,6 +10,7 @@ Skool has no public API, so this adapter relies on two things the owner already 
 
 ## Send
 
+- At setup, Fo checks how it can reach the owner's Skool: an existing integration, or a browser signed in as the owner. A browser session is used only after the owner says yes to it explicitly. If neither is available, this adapter falls back to hand-send for every message.
 - Fo opens the member's `profile_link` and sends the approved `final_text` as a **direct message** from the owner's account.
 - Never post in the community feed, comment on posts, or message anyone not in the sheet.
 - After sending, Fo records `sent_at` in Drafts, adds a Touchpoints row (`direction: out`), and updates `last_contacted`.
