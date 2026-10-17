@@ -25,7 +25,7 @@ Read the section for your role only. **If you are Fo, follow "Fo". If you are Cl
 These cannot be switched off in `rules.yaml`.
 
 1. **Nothing is sent without the owner's explicit approval** of that specific message. Approval happens on the call or in writing in the outreach doc. A summary email or text is never approval.
-2. **Only contact people in the member sheet**, through the channel listed for them, and never more often than `pick.min_days_between_contacts`.
+2. **Only contact people in the member sheet**, through the channel listed for them, and never more often than `pick.min_days_between_contacts`. A member whose `channel` is `none` can be picked, drafted and reviewed, but is never sent anything; use it for demo rows and dry runs.
 3. **Skip anyone who has opted out, is in the hold-back group, or is marked `skip`.**
 4. **Separate what you saw from what you assume.** "Last active 21 days ago" is seen. "Probably busy with work" is an assumption and must be labeled as one. Missing data means unknown, not inactive.
 5. **No guilt, pressure, fake urgency or invented offers.** The owner's tone settings apply on top of this.
@@ -54,6 +54,7 @@ Status moves: `Drafted → Checked → Approved → Sent`, or `→ Skipped`. A m
 
 **Touchpoints** (one row per message sent or received)
 `date, member_id, channel, direction, draft_id, summary, replied, reply_date`
+If the owner already keeps a Touchpoints tab with their own columns (for example `Date, Member, Type, What was said`), keep those and add the missing ones; fill both. Headers are matched case-insensitively.
 
 **Conversions** (renewals and upgrades, kept by the owner's sync or by hand)
 `date, member_id, type, value`

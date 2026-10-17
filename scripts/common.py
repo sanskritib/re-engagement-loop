@@ -27,8 +27,17 @@ def read_tab(folder: str | Path, name: str) -> list[dict]:
     path = Path(folder) / f"{name}.csv"
     if not path.exists():
         return []
+    rows = []
     with open(path, newline="", encoding="utf-8") as f:
-        return [dict(r) for r in csv.DictReader(f)]
+        for r in csv.DictReader(f):
+            row = dict(r)
+            # Also expose each column under a normalized name ("Last contact" -> "last_contact"),
+            # so owners can keep their own headers ("Date", "Member") alongside the skill's.
+            for k, v in r.items():
+                if k:
+                    row.setdefault(re.sub(r"[^a-z0-9]+", "_", k.strip().lower()).strip("_"), v)
+            rows.append(row)
+    return rows
 
 
 def load_members(folder: str | Path, rules: dict) -> dict[str, dict]:

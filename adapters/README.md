@@ -7,6 +7,7 @@ An adapter tells Fo two things for one platform: **where member data comes from*
 | [skool](skool.md) | The member sheet, kept current by the owner's nightly sync | Fo, using the owner's existing Skool access, as a direct message | In use with our first tester |
 | [email](email.md) | The member sheet (`contact` = email address) | Fo sends email from the owner's account | Fo reports it can do this; not yet tested in this loop |
 | [hand-send](hand-send.md) | Any | The owner, from the text and link Fo provides | Always available; the fallback for every adapter |
+| none | Any | Nothing is sent: drafts are written and reviewed only | For demo rows and dry runs |
 | slack | Workspace member list exported to the sheet | Slack DM | Not built yet |
 | discord | Server member list exported to the sheet | Discord DM | Not built yet |
 
