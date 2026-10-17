@@ -1,0 +1,70 @@
+# rules.yaml — the owner's settings. Copy this file to rules.yaml and edit it.
+# Example: a paid coaching community on Skool (fictional).
+# The agents read this file but never change it.
+
+owner:
+  name: "Alex"                       # signs the messages
+  timezone: "America/Los_Angeles"
+  call_time: "08:00"
+  call_retries: 2
+  phone: "+1-555-0100"               # placeholder
+  email: "owner@example.com"         # placeholder
+
+community:
+  name: "Northstar Coaching Circle"  # fictional
+  platform: skool                    # see adapters/
+  what_members_get: "weekly group coaching calls and accountability on personal goals"
+
+files:
+  member_sheet: "<Google Sheet link>"
+  outreach_doc: "<Google Doc link>"
+
+# Map your sheet's column names to the ones the skill expects.
+# Leave a value blank if you don't have that column.
+columns:
+  member_id: "member_id"
+  name: "Member"
+  channel: "channel"
+  contact: "contact"
+  profile_link: "profile_link"
+  joined: "Join date"
+  last_active: "Last active date (auto, used by nightly sync)"
+  stage: "Status"
+  renewal_date: "Renewal date"
+  plan_value: "plan_value"
+  last_contacted: "Last contact (auto)"
+  opted_out: "opted_out"
+  skip: "skip"
+  goal: "Current goal"
+  notes: "Notes"
+
+# Who gets picked. Rules are checked in order; a member matching any rule is a candidate.
+pick:
+  rules:
+    - id: quiet_14d
+      description: "Not active in the community for 14 or more days"
+      last_active_days_at_least: 14
+    - id: renewal_soon_and_quiet
+      description: "Renewal within 30 days and not active for 7 or more days"
+      renewal_within_days: 30
+      last_active_days_at_least: 7
+  priority: [renewal_soon_and_quiet, quiet_14d]
+  max_per_run: 5
+  min_days_between_contacts: 14
+  skip_if_notes_contain: ["Moderator"]
+
+tone:
+  max_words: 80
+  voice: "warm, direct, short; sounds like a coach checking in, not a marketer"
+  must: ["mention something specific to them (goal, last call, join date)", "end with one easy question"]
+  never: ["guilt", "discounts or offers", "mention that they are being tracked"]
+
+measure:
+  # Stages, lowest first. "Moved up" means a later stage in this list.
+  stages: ["Red", "Yellow", "Green"]
+  moved_up_window_days: 14
+  attribution_days: 30
+  holdout_digits: [0, 5]
+  baseline_minutes: 45          # the owner's timed manual routine, per day
+  revenue_target: 50000
+  revenue_target_by: "2027-04-17"

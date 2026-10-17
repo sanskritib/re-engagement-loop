@@ -1,0 +1,53 @@
+draft_id,date,member_id,name,rule,reason,status,final_text,approved_at,sent_at
+D-2026-09-27-H0,2026-09-27,M-0005,,quiet_14d,quiet; held back for comparison,Held back,,,
+D-2026-09-27-01,2026-09-27,M-0023,,quiet_14d,no activity for 14+ days,Sent,(simulated),2026-09-27,2026-09-27
+D-2026-09-27-H2,2026-09-27,M-0035,,quiet_14d,quiet; held back for comparison,Held back,,,
+D-2026-09-27-02,2026-09-27,M-0011,,quiet_14d,no activity for 14+ days,Sent,(simulated),2026-09-27,2026-09-27
+D-2026-09-27-H11,2026-09-27,M-0060,,quiet_14d,quiet; held back for comparison,Held back,,,
+D-2026-09-27-H12,2026-09-27,M-0045,,quiet_14d,quiet; held back for comparison,Held back,,,
+D-2026-09-27-H23,2026-09-27,M-0030,,quiet_14d,quiet; held back for comparison,Held back,,,
+D-2026-09-28-01,2026-09-28,M-0001,,quiet_14d,no activity for 14+ days,Sent,(simulated),2026-09-28,2026-09-28
+D-2026-09-28-02,2026-09-28,M-0032,,quiet_14d,no activity for 14+ days,Sent,(simulated),2026-09-28,2026-09-28
+D-2026-09-28-H17,2026-09-28,M-0020,,quiet_14d,quiet; held back for comparison,Held back,,,
+D-2026-09-29-01,2026-09-29,M-0036,,quiet_14d,no activity for 14+ days,Sent,(simulated),2026-09-29,2026-09-29
+D-2026-09-29-02,2026-09-29,M-0022,,quiet_14d,no activity for 14+ days,Sent,(simulated),2026-09-29,2026-09-29
+D-2026-09-30-01,2026-09-30,M-0017,,quiet_14d,no activity for 14+ days,Sent,(simulated),2026-09-30,2026-09-30
+D-2026-09-30-02,2026-09-30,M-0047,,quiet_14d,no activity for 14+ days,Sent,(simulated),2026-09-30,2026-09-30
+D-2026-09-30-H7,2026-09-30,M-0040,,quiet_14d,quiet; held back for comparison,Held back,,,
+D-2026-10-01-01,2026-10-01,M-0043,,quiet_14d,no activity for 14+ days,Sent,(simulated),2026-10-01,2026-10-01
+D-2026-10-01-02,2026-10-01,M-0009,,quiet_14d,no activity for 14+ days,Sent,(simulated),2026-10-01,2026-10-01
+D-2026-10-01-H11,2026-10-01,M-0015,,quiet_14d,quiet; held back for comparison,Held back,,,
+D-2026-10-02-01,2026-10-02,M-0053,,quiet_14d,no activity for 14+ days,Sent,(simulated),2026-10-02,2026-10-02
+D-2026-10-02-02,2026-10-02,M-0006,,quiet_14d,no activity for 14+ days,Sent,(simulated),2026-10-02,2026-10-02
+D-2026-10-03-01,2026-10-03,M-0054,,quiet_14d,no activity for 14+ days,Sent,(simulated),2026-10-03,2026-10-03
+D-2026-10-03-02,2026-10-03,M-0046,,quiet_14d,no activity for 14+ days,Sent,(simulated),2026-10-03,2026-10-03
+D-2026-10-04-01,2026-10-04,M-0033,,quiet_14d,no activity for 14+ days,Sent,(simulated),2026-10-04,2026-10-04
+D-2026-10-04-02,2026-10-04,M-0018,,quiet_14d,no activity for 14+ days,Sent,(simulated),2026-10-04,2026-10-04
+D-2026-10-05-01,2026-10-05,M-0026,,quiet_14d,no activity for 14+ days,Sent,(simulated),2026-10-05,2026-10-05
+D-2026-10-05-02,2026-10-05,M-0044,,quiet_14d,no activity for 14+ days,Sent,(simulated),2026-10-05,2026-10-05
+D-2026-10-06-01,2026-10-06,M-0039,,quiet_14d,no activity for 14+ days,Sent,(simulated),2026-10-06,2026-10-06
+D-2026-10-06-02,2026-10-06,M-0003,,quiet_14d,no activity for 14+ days,Sent,(simulated),2026-10-06,2026-10-06
+D-2026-10-06-H2,2026-10-06,M-0055,,quiet_14d,quiet; held back for comparison,Held back,,,
+D-2026-10-07-01,2026-10-07,M-0059,,quiet_14d,no activity for 14+ days,Sent,(simulated),2026-10-07,2026-10-07
+D-2026-10-07-02,2026-10-07,M-0038,,quiet_14d,no activity for 14+ days,Sent,(simulated),2026-10-07,2026-10-07
+D-2026-10-08-01,2026-10-08,M-0051,,quiet_14d,no activity for 14+ days,Sent,(simulated),2026-10-08,2026-10-08
+D-2026-10-08-02,2026-10-08,M-0034,,quiet_14d,no activity for 14+ days,Sent,(simulated),2026-10-08,2026-10-08
+D-2026-10-09-01,2026-10-09,M-0048,,quiet_14d,no activity for 14+ days,Sent,(simulated),2026-10-09,2026-10-09
+D-2026-10-09-02,2026-10-09,M-0002,,quiet_14d,no activity for 14+ days,Sent,(simulated),2026-10-09,2026-10-09
+D-2026-10-10-01,2026-10-10,M-0037,,quiet_14d,no activity for 14+ days,Sent,(simulated),2026-10-10,2026-10-10
+D-2026-10-10-02,2026-10-10,M-0014,,quiet_14d,no activity for 14+ days,Sent,(simulated),2026-10-10,2026-10-10
+D-2026-10-11-01,2026-10-11,M-0052,,quiet_14d,no activity for 14+ days,Sent,(simulated),2026-10-11,2026-10-11
+D-2026-10-11-02,2026-10-11,M-0011,,quiet_14d,no activity for 14+ days,Sent,(simulated),2026-10-11,2026-10-11
+D-2026-10-12-01,2026-10-12,M-0032,,quiet_14d,no activity for 14+ days,Sent,(simulated),2026-10-12,2026-10-12
+D-2026-10-12-02,2026-10-12,M-0001,,quiet_14d,no activity for 14+ days,Sent,(simulated),2026-10-12,2026-10-12
+D-2026-10-13-01,2026-10-13,M-0036,,quiet_14d,no activity for 14+ days,Sent,(simulated),2026-10-13,2026-10-13
+D-2026-10-14-01,2026-10-14,M-0017,,quiet_14d,no activity for 14+ days,Sent,(simulated),2026-10-14,2026-10-14
+D-2026-10-15-01,2026-10-15,M-0043,,quiet_14d,no activity for 14+ days,Sent,(simulated),2026-10-15,2026-10-15
+D-2026-10-15-02,2026-10-15,M-0016,,quiet_14d,no activity for 14+ days,Sent,(simulated),2026-10-15,2026-10-15
+D-2026-10-17-01,2026-10-17,M-0021,,quiet_14d,no activity for 14+ days,Sent,(simulated),2026-10-17,2026-10-17
+D-2026-10-17-02,2026-10-17,M-0031,,quiet_14d,no activity for 14+ days,Sent,(simulated),2026-10-17,2026-10-17
+D-2026-10-18-01,2026-10-18,M-0061,Test Member (teammate),quiet_14d,no activity for 14+ days,Drafted,,,
+D-2026-10-18-02,2026-10-18,M-0018,Rae Lund,quiet_14d,no activity for 14+ days,Drafted,,,
+D-2026-10-18-03,2026-10-18,M-0054,Nia Duarte,quiet_14d,no activity for 14+ days,Drafted,,,
+D-2026-10-18-04,2026-10-18,M-0031,Ezra Mensah,quiet_14d,no activity for 14+ days,Drafted,,,
+D-2026-10-18-05,2026-10-18,M-0005,Eli Sato,quiet_14d,no activity for 14+ days,Drafted,,,
