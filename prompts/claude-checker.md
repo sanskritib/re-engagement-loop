@@ -1,6 +1,6 @@
 # Install: Claude checker
 
-Claude runs Step 2 (Check) between Fo's two jobs. Set it up as a **scheduled task** in Claude with the Google Drive connector enabled, running daily at a time between Fo's night and morning jobs (for example 05:00 in your time zone). It needs read and write access to the member sheet and the outreach doc, and nothing else: no Fo connection, no access to member platforms.
+Claude runs Step 2 (Check) between Fo's two jobs. Set it up as a **scheduled task** in Claude with the Google Drive, Google Sheets and Google Docs connectors enabled (Drive alone can read the files but cannot edit a sheet's tabs or a doc in place), running daily at a time between Fo's night and morning jobs (for example 05:00 in your time zone). It needs read and write access to the member sheet and the outreach doc, and nothing else: no Fo connection, no access to member platforms.
 
 Paste this as the task's prompt, with the angle brackets filled in.
 
