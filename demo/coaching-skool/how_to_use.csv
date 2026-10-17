@@ -1,0 +1,12 @@
+How this tracker works
+1. Members: one row per member (admins and owner excluded). Names are anonymized placeholders for the demo.
+2. Join date comes from Skool. Renewal date is the next anniversary of the join date and rolls forward each year.
+3. Status turns Red if not active in Skool 14+ days or no contact from you in 21+ days; Yellow if inactive 7 to 13 days or renewal within 30 days; Green otherwise.
+"4. Touchpoints: log every DM, call or check-in (pick the member from the dropdown). 'Last contact' on Members fills itself from here."
+5. Weekly pulse: one row per member each Monday.
+Northstar Coaching Circle is a fictional demo community. Member names are placeholders; goals are made up.
+Re-engagement loop (added for the hackathon test)
+"channel: 'none' = draft and review only, never sent. During setup, Fo fills in the tester row(s) with a real name and profile link and sets channel to 'skool'; only those rows can receive a real message."
+member_id: the loop's ID for each member. IDs ending in 0 or 5 are the hold-back group and are never contacted.
+"Touchpoints: the loop adds member_id, channel, direction (out/in), draft_id and replies; 'Last contact' still fills from here."
+"Status history, Drafts, Conversions, Checks, Scorecard and Run log are written by Fo and Claude. Don't edit them by hand."

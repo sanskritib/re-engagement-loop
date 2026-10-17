@@ -32,7 +32,7 @@ Claude computes these, not Fo, because Fo wrote the messages.
 
 You need a Wajo account on the OG Fo plan, with Google and your community platform connected, and your member list in a Google Sheet.
 
-**Easiest: ask Claude.** Add this repo's `SKILL.md` as a skill in Claude (or just share the repo link), make sure Fo's MCP is connected (`https://mcp.api.wajo.ai/fo`), and say: *"Install the re-engagement loop for me using Fo. My member sheet is <link>."* Claude sends the install to Fo, relays Fo's setup questions to you, and sets up the checker.
+**Easiest: ask Claude.** Add this repo's `SKILL.md` as a skill in Claude (or just share the repo link), make sure Fo's MCP is connected (`https://mcp.api.wajo.ai/fo`), and say: *"Install the re-engagement loop for me using Fo. My member sheet is <link>."* To try it first, say *"…using Fo, with the demo data"* instead: Fo builds a fictional coaching community in your own Drive, and asks who should receive the one real test message. Claude sends the install to Fo, relays Fo's setup questions to you, and sets up the checker.
 
 **Or do it by hand:**
 
@@ -75,7 +75,7 @@ We recommend telling your members that you use an assistant to manage outreach.
 | `adapters/` | Per-platform read and send instructions |
 | `scripts/` | Deterministic checks and the scorecard |
 | `templates/` | Sheet tabs and an example outreach doc |
-| `demo/` | Fictional demo data generator |
+| `demo/` | The demo coaching community Fo can build in your Drive (`coaching-skool/`), and a generator for scripted test data |
 
 ## Authors
 

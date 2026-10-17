@@ -21,8 +21,8 @@ Times are in the owner's time zone and come from `rules.yaml`.
 Fo is reached through Fo's MCP server. Check your tools before anything else.
 
 **If Fo's tools are available** (`ask_fo`, `get_fo_reply`, `start_fo_call`, `list_fo_conversations`, `get_fo_conversation`), you do the install for the owner:
-1. Ask the owner for their member sheet link, if they haven't given it.
-2. Send Fo the install message from `prompts/install-fo.md` with `ask_fo`, the sheet link filled in.
+1. Ask the owner for their member sheet link, or whether to use the demo data, if they haven't said.
+2. Send Fo the install message from `prompts/install-fo.md` with `ask_fo`, with the sheet link or "use the demo data" filled in.
 3. While Fo works, keep calling `get_fo_reply` and relay its progress in one line. When Fo asks a setup question or wants confirmation, put it to the owner word for word and send their answer back with `ask_fo`. Never answer for the owner.
 4. When Fo sends the checker prompt, set up Step 2 as a scheduled task if you can create one; otherwise give the owner the prompt and say where it goes.
 5. Afterwards you can use `start_fo_call` to give the owner a link to a review call on demand, and `list_fo_conversations` / `get_fo_conversation` to read call transcripts if they ask what was approved.
@@ -129,7 +129,16 @@ To measure honestly, some quiet members are deliberately not contacted. A member
 
 ### Step 0: Setup (once, when the owner installs the skill)
 
-The owner only gives you their member sheet. You prepare everything else.
+The owner gives you either their own member sheet or the words "use the demo data". You prepare everything else, in the owner's own Google Drive. Nothing is needed from anyone else's Drive.
+
+**Demo data (when the owner asks for it, or has no member sheet yet):**
+- Create a new folder "Re-engagement loop (demo)" in the owner's Drive.
+- Create a Google Sheet there from `demo/coaching-skool/demo-member-sheet.xlsx` in the repo. If you can't import the file directly, create the sheet and fill one tab per CSV in `demo/coaching-skool/`, entering cells as user-entered so the formulas calculate.
+- The demo is a fictional coaching community. Every member has `channel` = `none`, so nothing can be sent to them.
+- Ask the owner who should receive real messages during the test (for example a teammate in a test community). For each tester, fill the "Tester" row (add more rows if needed) with their name, their profile link on the platform, and `channel` = the platform. Only these rows can ever be sent to. Set their last-active date 20 days back so they are picked on the first night.
+- Then continue from step 2 below with this sheet.
+
+**Own sheet:**
 
 1. Read the member sheet. Match its columns to the skill's names (see `columns` in `rules.example.yaml`) and show the owner the mapping before using it.
 2. Add any missing tabs the loop needs (Status history, Drafts, Touchpoints, Conversions, Checks, Scorecard, Run log), with the headers listed under "Shared files". Add missing columns to Members (`member_id`, `channel`, `profile_link`, `plan_value`, `opted_out`, `skip`) at the right-hand end. Fill `member_id` as `M-0001`, `M-0002`, … in row order.
