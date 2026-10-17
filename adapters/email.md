@@ -1,5 +1,9 @@
 # Adapter: email
 
+## Access needed
+
+- The owner's email account connected to Fo (at wajo.ai). Read-only test at setup: list the last few messages in the inbox.
+
 ## Read
 
 - Source: the member sheet's Members tab, with `channel` = `email` and `contact` = the member's email address.

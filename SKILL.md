@@ -23,7 +23,7 @@ Fo is reached through Fo's MCP server. Check your tools before anything else.
 **If Fo's tools are available** (`ask_fo`, `get_fo_reply`, `start_fo_call`, `list_fo_conversations`, `get_fo_conversation`), you do the install for the owner:
 1. Ask the owner for their member sheet link, or whether to use the demo data, if they haven't said.
 2. Send Fo the install message from `prompts/install-fo.md` with `ask_fo`, with the sheet link or "use the demo data" filled in.
-3. While Fo works, keep calling `get_fo_reply` and relay its progress in one line. When Fo asks a setup question or wants confirmation, put it to the owner word for word and send their answer back with `ask_fo`. Never answer for the owner.
+3. While Fo works, keep calling `get_fo_reply` and relay its progress in one line. When Fo asks a setup question or wants confirmation, put it to the owner word for word and send their answer back with `ask_fo`. Never answer for the owner. When Fo asks the owner to connect their platform, relay the instructions and wait for the owner to confirm before telling Fo it's done.
 4. When Fo sends the checker prompt, set up Step 2 as a scheduled task if you can create one; otherwise give the owner the prompt and say where it goes.
 5. Afterwards you can use `start_fo_call` to give the owner a link to a review call on demand, and `list_fo_conversations` / `get_fo_conversation` to read call transcripts if they ask what was approved.
 
@@ -160,10 +160,14 @@ The owner gives you either their own member sheet or the words "use the demo dat
    - If a Touchpoints tab already exists with other columns, keep them and add the missing ones.
 3. Create the outreach doc in the same folder as the sheet, using the layout under "Outreach doc layout", with an empty Editor's Notes section.
 4. **Contact details for the call.** Check what you already know about the owner from their Wajo account: phone number, email, time zone. If you have them, confirm them in one line ("I'll call you on +1 … — still right?") instead of asking again. If you don't have a phone number, ask for it once and save it to their Fo profile so other tasks can use it too. If they'd rather not give one, the morning review uses a call link instead (`start_fo_call`), sent by email or text at the scheduled time.
-5. Walk the owner through `setup/questions.md` (skip anything you already know from step 4) and write their answers to `rules.yaml` next to the sheet. Read the file back to them for confirmation.
-6. Create the two scheduled jobs (Step 1 and Step 3), and read back the times, what each does, and the phone number and email.
-7. Send the owner the links to the sheet, the outreach doc and `rules.yaml`, plus the prompt from `prompts/claude-checker.md` with the links filled in, so they can set up the Claude checker.
-8. Write a Run log row: `step=setup`.
+5. **Platform access.** Read the adapter for the owner's platform (`adapters/<platform>.md`, "Access needed"). Check whether you can already do what it lists, using a read-only test: open the community's member list or the owner's inbox. Send nothing.
+   - If you can, tell the owner in one line how you reach the platform.
+   - If you can't, ask the owner to connect it now, and say exactly how: connect the integration at wajo.ai if one exists, or sign in to the platform themselves in the browser you use. Never ask for a password in chat and never type one in yourself. Wait for them to say it's done, then run the read-only test again.
+   - If they'd rather not connect it, set the adapter to hand-send and say what that means: you prepare each approved message and they paste it.
+6. Walk the owner through `setup/questions.md` (skip anything you already know from step 4) and write their answers to `rules.yaml` next to the sheet. Read the file back to them for confirmation.
+7. Create the two scheduled jobs (Step 1 and Step 3), and read back the times, what each does, and the phone number and email.
+8. Send the owner the links to the sheet, the outreach doc and `rules.yaml`, plus the prompt from `prompts/claude-checker.md` with the links filled in, so they can set up the Claude checker.
+9. Write a Run log row: `step=setup`.
 
 ### Step 1: Draft (night)
 

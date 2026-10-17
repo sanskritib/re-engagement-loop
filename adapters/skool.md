@@ -2,6 +2,12 @@
 
 Skool has no public API, so this adapter relies on two things the owner already has: a sheet that is synced from Skool, and a Fo account that can act in Skool as the owner.
 
+## Access needed
+
+- Fo must be able to open member profiles and send direct messages as the owner. Skool has no public API, so this means either a Skool integration on the owner's Wajo account (if one is available) or the owner signing in to Skool in the browser Fo uses.
+- Read-only test at setup: open the community's Members page and the owner's Skool inbox.
+- The owner signs in themselves. Fo never asks for or types a Skool password.
+
 ## Read
 
 - Source: the member sheet's Members tab, kept current by the owner's existing nightly sync from Skool.
