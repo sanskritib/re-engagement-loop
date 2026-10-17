@@ -81,4 +81,4 @@ We recommend telling your members that you use an assistant to manage outreach.
 
 ## Authors
 
-Sanskriti Bhatnagar and Majid. MIT licensed.
+Sanskriti Bhatnagar and Majid Mohammed. MIT licensed.
