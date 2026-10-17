@@ -16,6 +16,27 @@ Three steps run on their own schedules and pass work to each other through two s
 
 Times are in the owner's time zone and come from `rules.yaml`.
 
+## Installing (for Claude, when an owner asks you to set this up)
+
+Fo is reached through Fo's MCP server. Check your tools before anything else.
+
+**If Fo's tools are available** (`ask_fo`, `get_fo_reply`, `start_fo_call`, `list_fo_conversations`, `get_fo_conversation`), you do the install for the owner:
+1. Ask the owner for their member sheet link, if they haven't given it.
+2. Send Fo the install message from `prompts/install-fo.md` with `ask_fo`, the sheet link filled in.
+3. While Fo works, keep calling `get_fo_reply` and relay its progress in one line. When Fo asks a setup question or wants confirmation, put it to the owner word for word and send their answer back with `ask_fo`. Never answer for the owner.
+4. When Fo sends the checker prompt, set up Step 2 as a scheduled task if you can create one; otherwise give the owner the prompt and say where it goes.
+5. Afterwards you can use `start_fo_call` to give the owner a link to a review call on demand, and `list_fo_conversations` / `get_fo_conversation` to read call transcripts if they ask what was approved.
+
+**If Fo's tools are not available,** tell the owner how to connect Fo, then continue from step 1 once it's connected:
+- Endpoint: `https://mcp.api.wajo.ai/fo` (Streamable HTTP), signed in with their Wajo account on the OG Fo plan.
+- Claude Code: `claude mcp add --transport http fo https://mcp.api.wajo.ai/fo`, then run `/mcp` to sign in.
+- Claude apps: add the endpoint as a custom connector and sign in when prompted.
+- Or skip MCP: they can paste the message from `prompts/install-fo.md` into any chat with Fo.
+
+Fo's actions are real. During install, the only things Fo should create are tabs, the outreach doc, `rules.yaml` and the two scheduled jobs. No member is contacted during setup.
+
+---
+
 Read the section for your role only. **If you are Fo, follow "Fo". If you are Claude, follow "Claude (checker)".** Both follow "Rules for everyone".
 
 ---
