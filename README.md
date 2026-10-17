@@ -34,6 +34,8 @@ You need a Wajo account on the OG Fo plan, with Google and your community platfo
 
 **Easiest: ask Claude.** Add this repo's `SKILL.md` as a skill in Claude (or just share the repo link), make sure Fo's MCP is connected (`https://mcp.api.wajo.ai/fo`), and say: *"Install the re-engagement loop for me using Fo. My member sheet is <link>."* To try it first, say *"…using Fo, with the demo data"* instead: Fo builds a fictional coaching community in your own Drive, and asks who should receive the one real test message. Claude sends the install to Fo, relays Fo's setup questions to you, and sets up the checker.
 
+To see it work immediately instead of waiting for the night, say *"run the loop now"*: Fo drafts, Claude checks, and Fo calls you straight away.
+
 **Or do it by hand:**
 
 1. **Send Fo the install message** in [`prompts/install-fo.md`](prompts/install-fo.md), with your sheet's link. Fo adds the loop's tabs to your sheet (without touching what's there), creates the outreach doc, asks you the [setup questions](setup/questions.md), saves your `rules.yaml`, and schedules the nightly draft and morning call.

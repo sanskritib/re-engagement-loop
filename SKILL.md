@@ -35,6 +35,20 @@ Fo is reached through Fo's MCP server. Check your tools before anything else.
 
 Fo's actions are real. During install, the only things Fo should create are tabs, the outreach doc, `rules.yaml` and the two scheduled jobs. No member is contacted during setup.
 
+## Run now (for testing and demos)
+
+The owner can run the whole loop on demand instead of waiting for the schedule, by saying "run the loop now" to Claude or Fo. The scheduled jobs are not changed.
+
+**When Claude is driving (Fo's MCP connected):**
+1. `ask_fo`: "Run Step 1 (Draft) of the re-engagement loop now." Poll `get_fo_reply` until it completes.
+2. Run Step 2 (Check) yourself right away, as described under "Claude (checker)". If you can't edit the sheet from here, say so and continue; Fo will report that the check didn't run.
+3. `ask_fo`: "Run Step 3 (Review and send) now: call me now instead of at the scheduled time." Fo places the call. If the owner prefers to talk in this app, use `start_fo_call` and give them the link instead.
+4. During the call, Fo updates the outreach doc and Drafts tab live. After it ends, read the Run log and tell the owner what was approved, sent and logged.
+
+**When the owner asks Fo directly:** Fo runs Step 1, waits about two minutes for Claude's check (or proceeds and says it didn't run), then runs Step 3 and calls immediately.
+
+A run-now still follows every rule: nothing is sent without approval, and the contact limits count it like any other run.
+
 ---
 
 Read the section for your role only. **If you are Fo, follow "Fo". If you are Claude, follow "Claude (checker)".** Both follow "Rules for everyone".
