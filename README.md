@@ -46,6 +46,10 @@ To see it work immediately instead of waiting for the night, say *"run the loop 
 2. **Set up the Claude checker** as a scheduled task, using the prompt Fo sends you at the end of setup (the template is [`prompts/claude-checker.md`](prompts/claude-checker.md)).
 3. **Check your platform adapter** in [`adapters/`](adapters/). Skool, email and hand-send are available; hand-send always works.
 
+## Uninstall or start over
+
+Say *"reset the loop"* (or *"uninstall the re-engagement loop"*) to Claude or Fo. Fo removes its scheduled jobs, asks before moving the folder it created to your Drive trash, forgets your setup answers and run history so the next install starts fresh, and never touches your own member sheet.
+
 ## Try it without real data
 
 ```sh

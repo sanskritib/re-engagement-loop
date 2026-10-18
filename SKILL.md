@@ -64,6 +64,22 @@ Read the section for your role only. **If you are Fo, follow "Fo". If you are Cl
 
 ---
 
+## Uninstall or reset
+
+When the owner says "uninstall the re-engagement loop" or "reset the loop" (for example after a test run, before installing again for real or for a demo):
+
+1. **List what the loop created**: its scheduled jobs, and the folder, sheet, outreach doc and `rules.yaml` made at setup. Read the list back to the owner.
+2. **Delete the loop's scheduled jobs.** After this nothing runs, calls or sends.
+3. **Ask before touching any file**: "Move the loop's folder to your Drive trash, or keep it?" Only remove files the loop created itself, never the owner's own member sheet or tabs, and move them to the trash rather than deleting them permanently.
+4. **Forget the setup.** Remove from your memory everything you saved about this loop for this owner: their setup answers, rules, segment choices, tester details, Editor's Notes and run history. If your memory can't remove something, say exactly what you still remember.
+5. **Treat the next install as the first.** Don't refer to the earlier install, its drafts or its calls unless the owner brings them up. Ask the setup questions again instead of reusing old answers. The owner's own profile details (name, phone, email, time zone) are not part of the loop and stay.
+6. **Claude removes the checker's scheduled task** if it set one up, or tells the owner where to remove it.
+7. Confirm in one line what was removed, what was forgotten and what was kept.
+
+Anything already sent to members stays sent; a reset can't recall emails.
+
+---
+
 ## Rules for everyone
 
 These cannot be switched off in `rules.yaml`.
