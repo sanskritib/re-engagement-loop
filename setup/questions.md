@@ -5,11 +5,11 @@ Answer these once. The answers become your `rules.yaml`. You can ask Claude or F
 1. **Who are you, and when should the call come?**
    Your first name as it should appear on messages, and the time for the morning call. Fo uses the phone number, email and time zone it already has for you and just confirms them; it only asks if they're missing. No phone number? The review comes as a call link instead.
 
-2. **Where do your members live, and where do you reach them?**
-   The platform (Skool, Slack, Discord, email, other) and the link to your member sheet. If your sheet's column names differ from the skill's, say which column is which.
+2. **Where do your members live, and how do you reach them?**
+   The platform you export members from (Skool, Circle, Discord, a CRM) and the link to your member sheet. Members are reached by email from your own account, never inside the platform. If your sheet's column names differ from the skill's, say which column is which.
 
-3. **What does "going quiet" mean for you?**
-   For example: no login for 14 days; no post for 3 weeks; renewal coming up and not active for a week. You can have more than one rule, in priority order.
+3. **Who needs a nudge?**
+   For example: no login for 14 days; joined a week ago and never posted an intro; renewal coming up and not active for a week. You can have more than one rule, in priority order.
 
 4. **How often may one person be contacted?**
    The minimum number of days between messages to the same person, and the most messages per day in total.

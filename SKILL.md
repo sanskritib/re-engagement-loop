@@ -1,7 +1,7 @@
 ---
 name: re-engagement-loop
-description: Run a daily re-engagement loop for a community or audience. Fo finds members going quiet, drafts a personal note for each, reviews the drafts with the owner on a morning call, and sends only what the owner approves. Claude checks every draft and keeps the scorecard. Use when an owner wants quiet members followed up on without doing it by hand.
-version: 0.1.0
+description: Run a daily re-engagement loop for a paid community or audience. Fo reads the member export, finds people who went quiet or never got started, drafts a personal email for each, reviews them with the owner on a call, and sends (or saves to Drafts) only what the owner approves, optionally with a voice note. Claude checks every draft and keeps the scorecard. Use when an owner wants members followed up on without doing it by hand.
+version: 0.2.0
 ---
 
 # Re-engagement loop
@@ -16,6 +16,8 @@ Three steps run on their own schedules and pass work to each other through two s
 
 Times are in the owner's time zone and come from `rules.yaml`.
 
+**Where members are read and where they are reached are kept separate.** Members are read from an export of the community platform (Skool, Circle, Discord, a CRM). They are reached through a channel the owner owns, by default the owner's own email. Many platforms forbid bots and automated messages inside them (Skool's community rules do), so this skill never acts inside the community platform.
+
 ## Installing (for Claude, when an owner asks you to set this up)
 
 Fo is reached through Fo's MCP server. Check your tools before anything else.
@@ -23,7 +25,7 @@ Fo is reached through Fo's MCP server. Check your tools before anything else.
 **If Fo's tools are available** (`ask_fo`, `get_fo_reply`, `start_fo_call`, `list_fo_conversations`, `get_fo_conversation`), you do the install for the owner:
 1. Ask the owner for their member sheet link, or whether to use the demo data, if they haven't said.
 2. Send Fo the install message from `prompts/install-fo.md` with `ask_fo`, with the sheet link or "use the demo data" filled in.
-3. While Fo works, keep calling `get_fo_reply` and relay its progress in one line. When Fo asks a setup question or wants confirmation, put it to the owner word for word and send their answer back with `ask_fo`. Never answer for the owner. When Fo asks the owner to connect their platform, relay the instructions and wait for the owner to confirm before telling Fo it's done.
+3. While Fo works, keep calling `get_fo_reply` and relay its progress in one line. When Fo asks a setup question or wants confirmation, put it to the owner word for word and send their answer back with `ask_fo`. Never answer for the owner. When Fo asks the owner to connect their email, relay the instructions and wait for the owner to confirm before telling Fo it's done.
 4. When Fo sends the checker prompt, set up Step 2 as a scheduled task if you can create one; otherwise give the owner the prompt and say where it goes.
 5. Afterwards you can use `start_fo_call` to give the owner a link to a review call on demand, and `list_fo_conversations` / `get_fo_conversation` to read call transcripts if they ask what was approved.
 
@@ -64,7 +66,7 @@ These cannot be switched off in `rules.yaml`.
 3. **Skip anyone who has opted out, is in the hold-back group, or is marked `skip`.**
 4. **Separate what you saw from what you assume.** "Last active 21 days ago" is seen. "Probably busy with work" is an assumption and must be labeled as one. Missing data means unknown, not inactive.
 5. **No guilt, pressure, fake urgency or invented offers.** The owner's tone settings apply on top of this.
-6. **Never post publicly** in the community. Direct messages only.
+6. **Never act inside the community platform.** No posts, comments or direct messages there, and no logging in as the owner. Members are reached only through the owner's own channels listed in `send.channels` (email by default). Respect each platform's terms.
 7. **Never change `rules.yaml`.** Propose changes to the owner; the owner edits the file.
 8. **Log every run** to the Run log tab, including runs that did nothing or failed.
 9. **Do not put member data anywhere other than the owner's own sheet and doc.**
@@ -78,14 +80,15 @@ These cannot be switched off in `rules.yaml`.
 Column names are configurable in `rules.yaml` under `columns`. Defaults:
 
 **Members** (owner's data, kept current by the owner's existing sync)
-`member_id, name, channel, contact, profile_link, joined, last_active, stage, renewal_date, plan_value, last_contacted, opted_out, skip, goal, notes`
+`member_id, name, email, channel, profile_link, joined, last_active, posts, intro_posted, stage, renewal_date, plan_value, last_contacted, opted_out, skip, goal, notes`
+`posts` is how many posts the member has made; `intro_posted` is yes/no. Leave them blank if the export doesn't have them; blank means unknown, never zero.
 
 **Status history** (one row per member per day, written by Fo in step 1)
 `date, member_id, stage`
 
 **Drafts** (one row per draft, the machine-readable ledger)
 `draft_id, date, member_id, name, rule, reason, status, final_text, approved_at, sent_at`
-Status moves: `Drafted → Checked → Approved → Sent`, or `→ Skipped`. A member in the hold-back group who matched a rule gets a row with status `Held back` and no draft; that row is the comparison group's start date.
+Status moves: `Drafted → Checked → Approved → Sent` or `→ Saved to drafts`, or `→ Skipped`. A member in the hold-back group who matched a rule gets a row with status `Held back` and no draft; that row is the comparison group's start date.
 
 **Touchpoints** (one row per message sent or received)
 `date, member_id, channel, direction, draft_id, summary, replied, reply_date`
@@ -149,7 +152,7 @@ The owner gives you either their own member sheet or the words "use the demo dat
 - Create a new folder "Re-engagement loop (demo)" in the owner's Drive.
 - Create a Google Sheet there from `demo/coaching-skool/demo-member-sheet.xlsx` in the repo. If you can't import the file directly, create the sheet and fill one tab per CSV in `demo/coaching-skool/`, entering cells as user-entered so the formulas calculate.
 - The demo is a fictional coaching community. Every member has `channel` = `none`, so nothing can be sent to them.
-- Ask the owner who should receive real messages during the test (for example a teammate in a test community). For each tester, fill the "Tester" row (add more rows if needed) with their name, their profile link on the platform, and `channel` = the platform. Only these rows can ever be sent to. Set their last-active date 20 days back so they are picked on the first night.
+- Ask the owner who should receive real emails during the test (for example a teammate, or the owner's second address). For each tester, fill the "Tester" row (add more rows if needed) with their name and email, and `channel` = `email`. Only these rows can ever be sent to. Set their last-active date 20 days back so they are picked on the first run.
 - Then continue from step 2 below with this sheet.
 
 **Own sheet:**
@@ -160,10 +163,11 @@ The owner gives you either their own member sheet or the words "use the demo dat
    - If a Touchpoints tab already exists with other columns, keep them and add the missing ones.
 3. Create the outreach doc in the same folder as the sheet, using the layout under "Outreach doc layout", with an empty Editor's Notes section.
 4. **Contact details for the call.** Check what you already know about the owner from their Wajo account: phone number, email, time zone. If you have them, confirm them in one line ("I'll call you on +1 … — still right?") instead of asking again. If you don't have a phone number, ask for it once and save it to their Fo profile so other tasks can use it too. If they'd rather not give one, the morning review uses a call link instead (`start_fo_call`), sent by email or text at the scheduled time.
-5. **Platform access.** Read the adapter for the owner's platform (`adapters/<platform>.md`, "Access needed"). Check whether you can already do what it lists, using a read-only test: open the community's member list or the owner's inbox. Send nothing.
+5. **Channel access.** Members are read from the export, so the community platform needs no access. Check the sending channel instead: read `adapters/email.md` ("Access needed") and run its read-only test on the owner's email account. Send nothing.
    - If you can, tell the owner in one line how you reach the platform.
-   - If you can't, ask the owner to connect it now, and say exactly how: connect the integration at wajo.ai if one exists, or sign in to the platform themselves in the browser you use. Never ask for a password in chat and never type one in yourself. Wait for them to say it's done, then run the read-only test again.
+   - If you can't, ask the owner to connect their email at wajo.ai now. Never ask for a password in chat and never type one in yourself. Wait for them to say it's done, then run the read-only test again.
    - If they'd rather not connect it, set the adapter to hand-send and say what that means: you prepare each approved message and they paste it.
+   - Also ask how they get the member export (for example Skool's member CSV), and how often they'll refresh it, so the nightly run reads fresh data.
 6. Walk the owner through `setup/questions.md` (skip anything you already know from step 4) and write their answers to `rules.yaml` next to the sheet. Read the file back to them for confirmation.
 7. Create the two scheduled jobs (Step 1 and Step 3), and read back the times, what each does, and the phone number and email.
 8. Send the owner the links to the sheet, the outreach doc and `rules.yaml`, plus the prompt from `prompts/claude-checker.md` with the links filled in, so they can set up the Claude checker.
@@ -188,17 +192,35 @@ The owner gives you either their own member sheet or the words "use the demo dat
 2. If no Checks rows exist for today's drafts, tell the owner at the start of the call: "Claude's check didn't run today." Continue.
 3. Call the owner at `owner.call_time` on `owner.phone`.
 4. On the call:
-   - Open with the scorecard in two sentences.
+   - Open with the whole picture before any draft: how many members you looked at, how many matched each rule (for example "Of 157 members, 23 went quiet, 11 joined but never posted, 6 renew within 30 days and are fading"), how many you held back for comparison, and which ones you drafted and why those first. Then the scorecard in two sentences.
    - Go through each draft: who, why now, what you wrote, and any Claude flag.
    - Apply the owner's changes to the doc while you talk, and say what you changed.
-   - Ask for a clear decision on each draft: approve, change, or skip.
+   - Ask for a clear decision on each draft, in the owner's words: **send it now**, **save it to my drafts** (to look at again or send later), **change it**, or **skip**. If they say "approve" without saying which, ask once: "Send now, or save to your drafts?" If `voice_notes.enabled`, also offer a voice note (see "Voice notes").
    - If the owner gives standing feedback ("never mention price"), add it to Editor's Notes.
    - If the owner asks for a rule change, note it under Owner notes. Do not edit `rules.yaml`.
 5. If the owner does not answer after `owner.call_retries` attempts, email and text a short summary to `owner.email` and `owner.phone`. Send nothing to members that day.
-6. For each approved draft: send it through the member's channel adapter (see `adapters/`), set Drafts status `Sent` with `sent_at` and `final_text`, add a Touchpoints row, and update `last_contacted`.
+6. For each draft the owner said to **send now**: send it through the member's channel adapter (see `adapters/`), set Drafts status `Sent` with `sent_at` and `final_text`, add a Touchpoints row, and update `last_contacted`.
+   For each draft the owner said to **save to drafts**: create it as a draft in the owner's email (subject, body, any voice note attached) without sending, set Drafts status `Saved to drafts`, and don't count it as a contact until the owner sends it. Next morning, mention any saved drafts still unsent.
 7. If an adapter cannot send, set status `Approved`, give the owner the text and profile link to send by hand, and log it.
 8. Record replies you see in Touchpoints (`direction: in`).
 9. Write one Run log row with how long the call took in `note` (`review_minutes=<n>`).
+
+---
+
+## Voice notes over email (opt-in)
+
+When `voice_notes.enabled` is true, an approved email can carry a short voice note as an audio attachment. The note has two parts, always in this order:
+
+1. **The owner's words, verbatim.** On the call, after the owner approves a draft, ask: "Want to add something in your own words for the voice note?" Take exactly what they said from the call transcript. Remove filler words only, change nothing else, and read the quote back to confirm.
+2. **Your part, in your own voice, openly as the owner's assistant.** One or two sentences: who you are, why you're writing, one easy next step. For example: "Hi Sam, this is Fo, Majid's assistant. Majid asked me to pass this on in his words: '…'. He'd love to see you on Thursday's call. Just reply to this email if you'd like a spot."
+
+Rules:
+- Always your own voice. Never imitate, clone or synthesize the owner's voice.
+- The note says it comes from Fo, the owner's assistant.
+- Play the finished audio to the owner before it goes out. Text approval isn't enough for audio.
+- Write a subject line that makes the member want to open it and is true to the content (for example "A quick voice note from Majid's team about your book goal"). No clickbait, no fake urgency.
+- Email only, from the owner's own account, as an attachment under `voice_notes.max_seconds`. The email body still contains the full text, so it works without audio.
+- Log the transcript of the full note in Drafts `final_text`, and `channel` = `email+voice` in Touchpoints.
 
 ---
 

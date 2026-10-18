@@ -12,7 +12,7 @@ owner:
 
 community:
   name: "Northstar Coaching Circle"  # fictional
-  platform: skool                    # see adapters/
+  platform: skool                    # where members are READ from (an export); never messaged inside it
   what_members_get: "weekly group coaching calls and accountability on personal goals"
 
 files:
@@ -24,11 +24,13 @@ files:
 columns:
   member_id: "member_id"
   name: "Member"
+  email: "email"
   channel: "channel"
-  contact: "contact"
   profile_link: "profile_link"
   joined: "Join date"
   last_active: "Last active date (auto, used by nightly sync)"
+  posts: "posts"
+  intro_posted: "intro_posted"
   stage: "Status"
   renewal_date: "Renewal date"
   plan_value: "plan_value"
@@ -48,10 +50,27 @@ pick:
       description: "Renewal within 30 days and not active for 7 or more days"
       renewal_within_days: 30
       last_active_days_at_least: 7
-  priority: [renewal_soon_and_quiet, quiet_14d]
+    - id: never_started
+      description: "Joined at least 7 days ago and hasn't posted an intro or any post"
+      joined_days_at_least: 7
+      intro_posted: "no"
+      posts_at_most: 0
+  priority: [renewal_soon_and_quiet, never_started, quiet_14d]
   max_per_run: 5
   min_days_between_contacts: 14
   skip_if_notes_contain: ["Moderator"]
+
+# How members are reached. The community platform is only read from, never messaged.
+send:
+  channels: ["email"]          # from the owner's own email account
+  default: ask                 # on the call the owner says "send it now" or "save it to my drafts"
+  subject_style: "short, specific to the person, honest; no clickbait"
+
+# Voice notes over email: the owner's words quoted verbatim from the call, plus a short
+# note in Fo's own voice as the assistant. Played to the owner before it's sent.
+voice_notes:
+  enabled: false
+  max_seconds: 45
 
 tone:
   max_words: 80

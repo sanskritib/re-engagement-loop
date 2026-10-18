@@ -6,7 +6,8 @@ How this tracker works
 5. Weekly pulse: one row per member each Monday.
 Northstar Coaching Circle is a fictional demo community. Member names are placeholders; goals are made up.
 Re-engagement loop (added for the hackathon test)
-"channel: 'none' = draft and review only, never sent. During setup, Fo fills in the tester row(s) with a real name and profile link and sets channel to 'skool'; only those rows can receive a real message."
+"channel: 'none' = draft and review only, never sent. During setup, Fo fills in the tester row(s) with a real name and email and sets channel to 'email'; only those rows can receive a real message."
 member_id: the loop's ID for each member. IDs ending in 0 or 5 are the hold-back group and are never contacted.
 "Touchpoints: the loop adds member_id, channel, direction (out/in), draft_id and replies; 'Last contact' still fills from here."
 "Status history, Drafts, Conversions, Checks, Scorecard and Run log are written by Fo and Claude. Don't edit them by hand."
+"email, posts, intro_posted: from the member export. Emails here are fictional (example.com). posts = 0 and intro_posted = no means the member never got started."

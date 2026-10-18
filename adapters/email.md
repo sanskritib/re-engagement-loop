@@ -1,23 +1,29 @@
-# Adapter: email
+# Adapter: email (default channel)
 
 ## Access needed
 
-- The owner's email account connected to Fo (at wajo.ai). Read-only test at setup: list the last few messages in the inbox.
+- The owner's email account (for example Gmail) connected to Fo at wajo.ai.
+- Read-only test at setup: list the last few messages in the inbox. Send nothing.
 
 ## Read
 
-- Source: the member sheet's Members tab, with `channel` = `email` and `contact` = the member's email address.
+- Members with `channel` = `email` and an `email` address in the sheet.
 
 ## Send
 
-- Fo sends the approved `final_text` from the owner's connected email account, one email per member, with a short plain subject line (for example "Checking in").
-- No attachments, no tracking pixels, no mailing-list tools.
-- After sending, Fo records `sent_at`, adds a Touchpoints row, and updates `last_contacted`.
+The owner decides per message on the call:
+
+- **"Send it now"**: Fo sends the approved email from the owner's account straight away.
+- **"Save it to my drafts"**: Fo creates it as a draft in the owner's email, ready to review or send later. Nothing goes out.
+
+Every email:
+- one person per email, from the owner's own address, signed as the owner;
+- a short subject that is specific to the person and true to the content;
+- plain text, no tracking pixels, no mailing-list tools;
+- with a voice note attached only when `voice_notes.enabled` and the owner approved the audio (see `SKILL.md`, "Voice notes over email").
+
+After sending, Fo records `sent_at` in Drafts, adds a Touchpoints row (`direction: out`), and updates `last_contacted`.
 
 ## Replies
 
-- Replies in the owner's inbox from a member's address are logged to Touchpoints (`direction: in`).
-
-## When it can't send
-
-- Follow [hand-send](hand-send.md).
+- Replies in the owner's inbox from a member's address are logged to Touchpoints (`direction: in`) and mentioned on the next call.
