@@ -22,7 +22,9 @@ Every email:
 - plain text, no tracking pixels, no mailing-list tools;
 - with a voice note attached when the owner said yes to one and approved the audio (see `SKILL.md`, "Voice notes over email").
 
-After sending, Fo records `sent_at` in Drafts, adds a Touchpoints row (`direction: out`), and updates `last_contacted`.
+Send only from the owner's own account, never from Fo's own address. If that isn't possible right now, save the email to the owner's drafts and say so.
+
+After sending, check that the email is in the owner's Sent folder before calling it sent. The recipient can take a minute or two to see it. Never send again without checking the Sent folder first. Then Fo records `sent_at` in Drafts, adds a Touchpoints row (`direction: out`), and updates `last_contacted`.
 
 ## Replies
 

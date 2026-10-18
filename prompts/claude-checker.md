@@ -27,7 +27,7 @@ Steps:
 5. Read every draft for today in the outreach doc. Add judgment flags where they apply:
    assumption_unlabeled, unknown_data, tone, pressure (definitions in SKILL.md).
    Keep each reason to one sentence. Do not suggest rewrites.
-6. Append all flags to the Checks tab. Put each draft's flags on its "Claude flags" line in the doc.
+6. Append all flags to the Checks tab. Put each draft's flags on its "Claude's check" line in the doc.
    If you cannot edit the doc cleanly, write only to the Checks tab and say so in the Run log.
    Set each checked draft's status to Checked in the Drafts tab.
 7. Run: python scripts/scorecard.py --rules rules.yaml --data data --date <today> --json

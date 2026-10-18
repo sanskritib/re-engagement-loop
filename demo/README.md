@@ -30,7 +30,11 @@ Counts move as the dates age, which is the point: the community changes every da
 
 ## Using it
 
-Tell Claude: *"Install the re-engagement loop for me using Fo, with the demo data."* Fo builds this sheet in your own Drive from `demo-member-sheet.xlsx` (or the CSVs, one per tab), then asks whose email should get the real test messages and fills in the Tester row. Then say *"Run the loop now."*
+Tell Claude: *"Install the re-engagement loop for me using Fo, with the demo data."* Fo builds this sheet in your own Drive from `demo-member-sheet.xlsx` (or the CSVs, one per tab).
+
+Then say yes to the **demo call**. Claude asks whose email should get the real test message. Fo turns `demo-call.md` into your call doc: three numbers, then four ready-made drafts, with your tester's first. Claude gives you the link to open, and Fo calls you to walk through it. On the call you can add a voice note and send the test email.
+
+For a full run, where Fo sorts all 157 members and writes fresh drafts, say *"Run the loop now."*
 
 ## Switching to your own data
 

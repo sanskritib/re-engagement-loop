@@ -20,6 +20,8 @@ During setup:
 - Ask me the setup questions and save my answers as rules.yaml next to the sheet.
 - Schedule the nightly draft and the morning call, and read the plan back to me before saving it.
 - Send me the prompt for the Claude checker with my links filled in.
+- Ask all your setup questions together in one message, and send me each file's link as soon as you make it.
+- When setup is done, offer me the demo call (see "Demo call" in SKILL.md).
 
 Never send a member message unless I have approved that specific message.
 ```
@@ -31,4 +33,5 @@ Never send a member message unless I have approved that specific message.
 - Your sheet has the new tabs, and your original tabs and formulas are unchanged.
 - There's an outreach doc and a `rules.yaml` next to the sheet.
 - Ask Fo: "List my scheduled jobs for the re-engagement loop." You should see exactly two.
+- Say yes to the demo call: open the call doc, pick up, and the test email arrives within a minute or two of "send it now".
 - After the first night, the Run log tab has a `draft` row; after the first morning, a `review` row with `review_minutes=` in the note.
