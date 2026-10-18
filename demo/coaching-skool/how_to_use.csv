@@ -11,3 +11,5 @@ member_id: the loop's ID for each member. IDs ending in 0 or 5 are the hold-back
 "Touchpoints: the loop adds member_id, channel, direction (out/in), draft_id and replies; 'Last contact' still fills from here."
 "Status history, Drafts, Conversions, Checks, Scorecard and Run log are written by Fo and Claude. Don't edit them by hand."
 "email, posts, intro_posted: from the member export. Emails here are fictional (example.com). posts = 0 and intro_posted = no means the member never got started."
+"posts_30d, calls_attended_30d, goal_updated, recent_win, recent_win_date, cancelled: fictional activity used by the segments. Real exports may not have all of them; segments that need a missing column are skipped."
+"Segments & strategies: the playbook Fo follows. Edit it, switch rows off, or add rows; Fo adds rows only after you approve them in brainstorm mode."

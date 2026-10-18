@@ -12,7 +12,9 @@ owner:
 
 community:
   name: "Northstar Coaching Circle"  # fictional
-  platform: skool                    # where members are READ from (an export); never messaged inside it
+  platform: skool
+  mode: read_only                    # read_only: members come from an export, nothing happens inside the platform
+                                     # connected: Fo reads members through an official integration the owner connected
   what_members_get: "weekly group coaching calls and accountability on personal goals"
 
 files:
@@ -31,6 +33,12 @@ columns:
   last_active: "Last active date (auto, used by nightly sync)"
   posts: "posts"
   intro_posted: "intro_posted"
+  posts_30d: "posts_30d"
+  calls_attended_30d: "calls_attended_30d"
+  goal_updated: "goal_updated"
+  recent_win: "recent_win"
+  recent_win_date: "recent_win_date"
+  cancelled: "cancelled"
   stage: "Status"
   renewal_date: "Renewal date"
   plan_value: "plan_value"
@@ -42,34 +50,25 @@ columns:
 
 # Who gets picked. Rules are checked in order; a member matching any rule is a candidate.
 pick:
-  rules:
-    - id: quiet_14d
-      description: "Not active in the community for 14 or more days"
-      last_active_days_at_least: 14
-    - id: renewal_soon_and_quiet
-      description: "Renewal within 30 days and not active for 7 or more days"
-      renewal_within_days: 30
-      last_active_days_at_least: 7
-    - id: never_started
-      description: "Joined at least 7 days ago and hasn't posted an intro or any post"
-      joined_days_at_least: 7
-      intro_posted: "no"
-      posts_at_most: 0
-  priority: [renewal_soon_and_quiet, never_started, quiet_14d]
-  max_per_run: 5
+  # Segments and their strategies live in the "Segments & strategies" tab of the sheet,
+  # so the owner can edit, switch off or add to them (by hand or in brainstorm mode).
+  # Priority, highest first:
+  priority: [renewal_at_risk, never_started, went_quiet, fading, recent_win, goal_stalled, lurker, skipping_calls, win_back]
+  max_per_segment: 2
+  max_per_run: 8
   min_days_between_contacts: 14
   skip_if_notes_contain: ["Moderator"]
 
 # How members are reached. The community platform is only read from, never messaged.
 send:
   channels: ["email"]          # from the owner's own email account
-  default: ask                 # on the call the owner says "send it now" or "save it to my drafts"
+  default: save_to_drafts      # asked at setup: send_now or save_to_drafts. The owner can always say otherwise on the call
   subject_style: "short, specific to the person, honest; no clickbait"
 
-# Voice notes over email: the owner's words quoted verbatim from the call, plus a short
-# note in Fo's own voice as the assistant. Played to the owner before it's sent.
+# Voice notes over email (on by default): the owner's words quoted verbatim from the call, plus
+# a short note in Fo's own voice as the assistant. Played to the owner before it's sent.
 voice_notes:
-  enabled: false
+  enabled: true
   max_seconds: 45
 
 tone:

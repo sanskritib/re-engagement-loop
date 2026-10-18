@@ -1,4 +1,6 @@
-# Adapter: Skool (read only)
+# Adapter: Skool
+
+mode: read_only
 
 Skool is a **source**, not a channel. Its community rules ask members not to use bots or automation to post, comment or message others, so this skill never acts inside Skool: no posts, no DMs, no logging in as the owner.
 

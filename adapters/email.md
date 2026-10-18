@@ -11,7 +11,7 @@
 
 ## Send
 
-The owner decides per message on the call:
+The owner chooses a default at setup (`send.default`), and can override it per message on the call:
 
 - **"Send it now"**: Fo sends the approved email from the owner's account straight away.
 - **"Save it to my drafts"**: Fo creates it as a draft in the owner's email, ready to review or send later. Nothing goes out.
@@ -20,7 +20,7 @@ Every email:
 - one person per email, from the owner's own address, signed as the owner;
 - a short subject that is specific to the person and true to the content;
 - plain text, no tracking pixels, no mailing-list tools;
-- with a voice note attached only when `voice_notes.enabled` and the owner approved the audio (see `SKILL.md`, "Voice notes over email").
+- with a voice note attached when the owner said yes to one and approved the audio (see `SKILL.md`, "Voice notes over email").
 
 After sending, Fo records `sent_at` in Drafts, adds a Touchpoints row (`direction: out`), and updates `last_contacted`.
 

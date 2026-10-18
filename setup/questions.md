@@ -8,8 +8,8 @@ Answer these once. The answers become your `rules.yaml`. You can ask Claude or F
 2. **Where do your members live, and how do you reach them?**
    The platform you export members from (Skool, Circle, Discord, a CRM) and the link to your member sheet. Members are reached by email from your own account, never inside the platform. If your sheet's column names differ from the skill's, say which column is which.
 
-3. **Who needs a nudge?**
-   For example: no login for 14 days; joined a week ago and never posted an intro; renewal coming up and not active for a week. You can have more than one rule, in priority order.
+3. **Which segments should the loop work on?**
+   Fo reads out the default segments (renewal at risk, never started, went quiet, fading, lurker, skipping calls, goal stalled, recent win, win-back) with one line on each. Switch any off, change the order, or say "let's brainstorm" to add your own.
 
 4. **How often may one person be contacted?**
    The minimum number of days between messages to the same person, and the most messages per day in total.
@@ -23,5 +23,8 @@ Answer these once. The answers become your `rules.yaml`. You can ask Claude or F
 7. **What are your stages, and what is each worth?**
    Your funnel from lowest to highest, for example `Red, Yellow, Green` or `free, active, trial, paid`, and the plan value where money changes hands.
 
-8. **How long does following up take you today, and what's your target?**
+8. **When you approve an email on the call, should Fo send it straight away or save it to your drafts?**
+   This is just the default. You can always say "send it now" or "save it to my drafts" for any single email.
+
+9. **How long does following up take you today, and what's your target?**
    Time yourself once doing it by hand, so the time saved is measured, not guessed. If you have a revenue goal, give the amount and the date.

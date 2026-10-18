@@ -1,0 +1,10 @@
+segment,priority,enabled,signal,strategy,example_subject,voice_note_idea,added_by,added_on
+renewal_at_risk,1,yes,"Renewal within 30 days, not active for 7+ days",Remind them what they came for and what's coming up before renewal; one easy question,Before your renewal: what you said you wanted from this,Owner: one sentence on what they hoped to get out of the group,default,2026-10-18
+never_started,2,yes,"Joined 7+ days ago, no intro, no posts","Lower the bar: invite a one-line intro, or to just listen in on the next call",No intro needed. Just come say hi,Owner: a personal welcome by name,default,2026-10-18
+went_quiet,3,yes,Not active for 14+ days,"Reference their goal or last contribution; ask how it's going, no guilt",How's the book coming along?,Owner: asks about their goal in their own words,default,2026-10-18
+fading,4,yes,"5+ posts in total, but no posts and no calls in 30 days",Notice the change kindly; offer one small way back in,We've missed your updates,Owner: what they appreciated about the member's past posts,default,2026-10-18
+recent_win,5,yes,A win logged in the last 14 days,Celebrate it; invite them to share how they did it with the group,Saw your win. Would you share how you did it?,"Owner: congratulations, in their own words",default,2026-10-18
+goal_stalled,6,yes,"Goal set, not updated for 30+ days",Check in on the goal itself; offer to reset or shrink it,Is the goal still the goal?,Owner: permission to change the goal,default,2026-10-18
+lurker,7,yes,"Active in the last 7 days, but no posts and no calls in 30 days","Turn reading into one small action: a question to answer, a thread to join",A quick question I think you'd answer well,Owner: asks them the question directly,default,2026-10-18
+skipping_calls,8,yes,"Active, but no calls attended in 30 days",Share what they missed and one reason to join the next one,What you missed on Thursday's call,Owner: the one takeaway from the last call,default,2026-10-18
+win_back,9,yes,Cancelled (export includes it),"Warm, no-pressure note; ask what would have helped",No pitch. Just a question,Owner: thanks them for the time they were in,default,2026-10-18

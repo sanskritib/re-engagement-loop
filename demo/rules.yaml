@@ -9,6 +9,7 @@ owner:
 community:
   name: Northstar Coaching Circle
   platform: skool
+  mode: read_only
   what_members_get: weekly group coaching calls and accountability on personal goals
 files:
   member_sheet: <Google Sheet link>
@@ -16,11 +17,19 @@ files:
 columns:
   member_id: member_id
   name: name
+  email: email
   channel: channel
-  contact: contact
   profile_link: profile_link
   joined: joined
   last_active: last_active
+  posts: posts
+  intro_posted: intro_posted
+  posts_30d: posts_30d
+  calls_attended_30d: calls_attended_30d
+  goal_updated: goal_updated
+  recent_win: recent_win
+  recent_win_date: recent_win_date
+  cancelled: cancelled
   stage: stage
   renewal_date: renewal_date
   plan_value: plan_value
@@ -30,21 +39,29 @@ columns:
   goal: goal
   notes: notes
 pick:
-  rules:
-  - id: quiet_14d
-    description: Not active in the community for 14 or more days
-    last_active_days_at_least: 14
-  - id: renewal_soon_and_quiet
-    description: Renewal within 30 days and not active for 7 or more days
-    renewal_within_days: 30
-    last_active_days_at_least: 7
   priority:
-  - renewal_soon_and_quiet
-  - quiet_14d
-  max_per_run: 5
+  - renewal_at_risk
+  - never_started
+  - went_quiet
+  - fading
+  - recent_win
+  - goal_stalled
+  - lurker
+  - skipping_calls
+  - win_back
+  max_per_segment: 2
+  max_per_run: 8
   min_days_between_contacts: 14
   skip_if_notes_contain:
   - Moderator
+send:
+  channels:
+  - email
+  default: save_to_drafts
+  subject_style: short, specific to the person, honest; no clickbait
+voice_notes:
+  enabled: true
+  max_seconds: 45
 tone:
   max_words: 80
   voice: warm, direct, short; sounds like a coach checking in, not a marketer

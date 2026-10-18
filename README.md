@@ -2,13 +2,15 @@
 
 A packaged skill for anyone who runs a paid community or audience (coaches, community managers, creators, course and membership owners) and loses track of the people who drift away or never get started.
 
-Every night, **Fo** reads your member export and finds who needs a nudge: people who went quiet, people who joined but never posted, people whose renewal is coming up. It drafts a personal email for each. Before morning, **Claude** checks every draft against your rules and updates the scorecard. Then Fo **calls you**: it gives you the whole picture first ("of 157 members, 23 went quiet, 11 never started…"), walks through each draft and why, and changes it while you talk. For each one you say **"send it now"** or **"save it to my drafts"**. Optionally, Fo adds a short **voice note** that quotes you word for word.
+Every night, **Fo** reads your member list and sorts everyone into **re-engagement segments**: renewal at risk, never started, went quiet, fading, recent win, goal stalled, lurker, skipping calls, win-back. Each segment has its own strategy, kept in a sheet you can edit, and you can **brainstorm new ones with Fo** any time. Fo drafts a personal email for the most urgent people in each segment. Before morning, **Claude** checks every draft against your rules and updates the scorecard.
 
-No dashboard to check. The loop comes to you: a phone call, a doc you can edit, and an email or text if you miss the call.
+Then Fo **calls you**. It opens with the whole community ("of 157 members, 28 never started, 50 went quiet, 4 renew this month and are fading…"), walks through each draft and why, and changes it while you talk. For each one you say **"send it now"** or **"save it to my drafts"**, and Fo asks: **"Should I add a voice note?"** The voice note quotes you word for word, then Fo speaks as your assistant, and it arrives as an audio file with the email.
 
-**Your members are read from your platform's export, and reached through your own email.** Many community platforms (Skool among them) don't allow bots or automated messages, so the skill never acts inside the platform.
+No dashboard to check. The loop comes to you: a phone call, a sheet and a doc you can edit, and an email or text if you miss the call.
 
-Built for the Wajo × Anthropic hackathon, October 2026, and inspired by a coach running a paid Skool community. Version 0.2.
+**Platforms are handled in two modes.** If a platform's terms forbid bots or automation (Skool's do), it's `read_only`: Fo reads your member export and never acts inside the platform. If a platform allows it and you've connected an official integration, it's `connected`: Fo fetches members itself. Either way, members are reached through your own email.
+
+Built for the Wajo × Anthropic hackathon, October 2026, and inspired by a coach running a paid Skool community. Version 0.3.
 
 ## How it works
 
@@ -16,9 +18,9 @@ Three steps, each on its own schedule, passing work through two shared files: yo
 
 | Default time | Who | What happens |
 | --- | --- | --- |
-| 02:00 | Fo | Reads your member export, sorts everyone by your rules, picks who to reach out to and why, writes an email draft for each into the outreach doc |
+| 02:00 | Fo | Reads your members, sorts everyone into segments, picks the most urgent in each and writes an email draft for each, using that segment's strategy |
 | 05:00 | Claude | Checks every draft against your rules and flags problems (without rewriting), then updates the scorecard |
-| 08:00 | Fo | Calls you, opens with the full picture and the scorecard, reviews each draft with you, sends or saves to your drafts as you say, logs everything |
+| 08:00 | Fo | Calls you, opens with every segment's count and the scorecard, reviews each draft, adds voice notes, sends or saves to your drafts as you say, logs everything |
 
 If a step doesn't run, the next one notices and tells you. Every run is logged.
 
@@ -34,7 +36,7 @@ Claude computes these, not Fo, because Fo wrote the messages.
 
 You need a Wajo account on the OG Fo plan with Google (Drive and Gmail) connected, and your member export in a Google Sheet. Or nothing but the Wajo account, to try the demo.
 
-**Easiest: ask Claude.** Add this repo's `SKILL.md` as a skill in Claude (or just share the repo link), make sure Fo's MCP is connected (`https://mcp.api.wajo.ai/fo`), and say: *"Install the re-engagement loop for me using Fo. My member sheet is <link>."* To try it first, say *"…using Fo, with the demo data"* instead: Fo builds a fictional coaching community in your own Drive, and asks whose email should receive the real test message. Claude sends the install to Fo, relays Fo's setup questions to you, and sets up the checker.
+**Easiest: ask Claude.** Add this repo's `SKILL.md` as a skill in Claude (or just share the repo link), make sure Fo's MCP is connected (`https://mcp.api.wajo.ai/fo`), and say: *"Install the re-engagement loop for me using Fo. My member sheet is <link>."* To try it first, say *"…using Fo, with the demo data"* instead: Fo builds a fictional 157-member coaching community in your own Drive (see [`demo/README.md`](demo/README.md)), and asks whose email should receive the real test message. Claude sends the install to Fo, relays Fo's setup questions to you, and sets up the checker.
 
 To see it work immediately instead of waiting for the night, say *"run the loop now"*: Fo drafts, Claude checks, and Fo calls you straight away.
 
@@ -65,7 +67,8 @@ These are in [`SKILL.md`](SKILL.md) and can't be switched off:
 - Guesses are labeled as guesses; missing data counts as unknown, not inactive.
 - No guilt, pressure or invented offers.
 - Nothing happens inside your community platform: no posts, no DMs, no logging in as you.
-- Voice notes are always in Fo's own voice, introduced as your assistant, and played to you before they go out. Your voice is never cloned.
+- Voice notes are always in Fo's own voice, introduced as your assistant, quote you only word for word, and are played to you before they go out. Your voice is never cloned.
+- New segments or strategies from brainstorming are added only after you approve them.
 - The agents never change your rules; they propose changes on the call.
 
 We recommend telling your members that you use an assistant to manage outreach.
