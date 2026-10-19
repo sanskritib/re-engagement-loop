@@ -50,7 +50,7 @@ To see a full run on real data instead of waiting for the night, say *"run the l
 
 ## Uninstall or start over
 
-Say *"reset the loop"* (or *"uninstall the re-engagement loop"*) to Claude or Fo. Fo removes its scheduled jobs, asks before moving the folder it created to your Drive trash, forgets your setup answers and run history so the next install starts fresh, and never touches your own member sheet.
+Say *"reset the loop"* (or *"uninstall the re-engagement loop"*) to Claude or Fo. After one yes from you, Fo deletes its scheduled jobs, moves every file the loop made to your Drive trash, deletes the loop's email drafts, deletes its conversations about the loop, and forgets it was ever installed. The next install behaves like the first. Your own member sheet is never touched, and sent emails can't be recalled.
 
 ## Try it without real data
 

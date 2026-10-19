@@ -52,6 +52,8 @@ A five-minute guided call on the fictional community, so a new owner hears the w
 
 **The demo's scenario:** the coach has told members that they use an assistant, Fo, for outreach, and that every message is the coach's own words (`community.members_informed: true`). So in the demo, Fo sends the test email itself, from its own address, with the voice note attached, signed as the coach's assistant (`send.from: fo`). The tester agrees to this by giving their email.
 
+**With the demo data, the demo call comes first and setup questions come after.** During a demo install, Fo asks only for the tester's name and email. Everything else uses the defaults in `rules.example.yaml`, saved as `rules.yaml` and marked "defaults, not yet confirmed". After the demo call, Fo asks the setup questions. If the owner says "run the loop now" or "call me" before the demo call has happened, that means the demo call.
+
 **Claude, when the owner says yes:**
 1. Ask: "Who should get the real test email? Give a name and email address. It can be your own second address." This is the only message the demo can send.
 2. `ask_fo`: "Prepare the demo call for the re-engagement loop. Tester: <name>, <email>. Follow 'Demo call' in SKILL.md. Reply with the call doc link, and don't call yet."
@@ -63,7 +65,8 @@ A five-minute guided call on the fictional community, so a new owner hears the w
 **Fo, when asked to prepare the demo call:**
 1. If the demo sheet doesn't exist yet, build it as in Step 0 (demo data). Put the tester's name, email and `channel` = `email` in the Tester row. Use `send.from: fo` and `community.members_informed: true` for the demo, whatever the owner chose for their real community.
 2. Create a Google Doc called "Your call with Fo (demo)" from `demo/coaching-skool/demo-call.md`. Fill in `{TESTER}` (the tester's first name), `{OWNER}` (the owner's first name), `{DAY}` (today's weekday) and `{DATE}`. Add the four drafts to the Drafts tab with status `Checked`, and copy the check results into the Checks tab.
-3. Reply with the doc link. Don't call until you're asked.
+3. Make the tester's voice note now, before the call: Fo's part only ("Hi <tester>, this is Fo, <owner>'s assistant…"), as an audio file. On the call you add the owner's own words, then play the finished note back.
+4. Reply with the doc link. Don't call until you're asked.
 
 **Fo, on the demo call:**
 1. "Hi <owner>, it's Fo. Have you got the call doc open? I'll go through it from the top." Wait until they have.
@@ -99,13 +102,23 @@ Read the section for your role only. **If you are Fo, follow "Fo". If you are Cl
 
 When the owner says "uninstall the re-engagement loop" or "reset the loop" (for example after a test run, before installing again for real or for a demo):
 
-1. **List what the loop created**: its scheduled jobs, and the folder, sheet, outreach doc and `rules.yaml` made at setup. Read the list back to the owner.
-2. **Delete the loop's scheduled jobs.** After this nothing runs, calls or sends.
-3. **Ask before touching any file**: "Move the loop's folder to your Drive trash, or keep it?" Only remove files the loop created itself, never the owner's own member sheet or tabs, and move them to the trash rather than deleting them permanently.
-4. **Forget the setup.** Remove from your memory everything you saved about this loop for this owner: their setup answers, rules, segment choices, tester details, Editor's Notes and run history. If your memory can't remove something, say exactly what you still remember.
-5. **Treat the next install as the first.** Don't refer to the earlier install, its drafts or its calls unless the owner brings them up. Ask the setup questions again instead of reusing old answers. The owner's own profile details (name, phone, email, time zone) are not part of the loop and stay.
-6. **Claude removes the checker's scheduled task** if it set one up, or tells the owner where to remove it.
-7. Confirm in one line what was removed, what was forgotten and what was kept.
+A reset erases everything the loop left behind, so the next install behaves exactly like the first one ever (for example before recording a demo).
+
+1. **List everything the loop created or touched**, and read the list back to the owner in one message:
+   - scheduled jobs;
+   - Drive files: the folder, member sheet, outreach and call docs, `rules.yaml`, and any copies from earlier installs (search Drive for "Re-engagement loop" and "Northstar");
+   - email: drafts the loop saved in the owner's email, and test emails it sent;
+   - Fo conversations about this loop, on every channel, including calls;
+   - what you remember about it.
+2. **Ask once**: "I'll delete the jobs, move these files to your Drive trash, delete the loop's drafts, delete these conversations and forget all of it. Go ahead?" Wait for a yes. Never touch the owner's own member sheet or tabs.
+3. **Delete the loop's scheduled jobs.** After this nothing runs, calls or sends.
+4. **Move every listed Drive file to the trash.** Say the owner can empty the trash to remove them for good.
+5. **Delete the loop's email drafts.** Leave sent emails alone. They can't be recalled; say how many there were.
+6. **Delete your conversations about this loop**, including call transcripts, on every channel you can. Say exactly which ones you couldn't delete.
+7. **Forget the loop completely.** Remove from your memory everything about it: setup answers, rules, segments, testers, Editor's Notes, drafts, calls, run history, and that it was ever installed. If something can't be removed, say exactly what you still remember.
+8. **Treat the next install as the first ever.** Don't mention earlier installs, runs, testers or emails ("like this afternoon"), and don't suggest answers from them. Ask the setup questions fresh. The owner's own profile (name, phone, email, time zone) is not part of the loop and stays.
+9. **Claude** removes the checker's scheduled task if it set one up. It tells the owner that Claude chats about the loop can be deleted from the chat list. If Claude has a memory of the loop, it asks before removing it.
+10. Confirm in a few lines what was deleted, what was trashed, what was forgotten, and anything that couldn't be removed.
 
 Anything already sent to members stays sent; a reset can't recall emails.
 
@@ -282,6 +295,8 @@ The demo is a fictional paid coaching community, "Northstar Coaching Circle", wi
    - If you can, tell the owner in one line how you reach the platform.
    - If you can't, ask the owner to connect their email at wajo.ai now. Never ask for a password in chat and never type one in yourself. Wait for them to say it's done, then run the read-only test again.
    - If they'd rather not connect it, set the adapter to hand-send and say what that means: you prepare each approved message and they paste it.
+**Keep setup about the loop.** Don't bring up anything else from the owner's calendar, email or other tasks in setup questions or on calls (for example "your 8:30 prep text"). The owner may be sharing their screen.
+
 6. Walk the owner through `setup/questions.md` (skip anything you already know from step 4) and write their answers to `rules.yaml` next to the sheet. Always ask these two, because they set defaults the owner can change by voice later:
    - **How approved emails go out:** first check whether you can send from the owner's own email account. If you can, ask: "When you approve an email, should I send it straight away, or save it to your drafts?" Save it as `send.default`. If you can't (the usual case), say so plainly and ask: "I'll save approved emails to your drafts and you press send. That's the default. Or, if you've told your members you use an assistant for outreach, I can send them myself from my own address, signed as your assistant. Have you told them, and which do you prefer?" Save `community.members_informed`, `send.from` (`owner` or `fo`) and `send.default` (`save_to_drafts`, or `send_now` only with `send.from: fo`).
    - **Segments:** read out the segments in the "Segments & strategies" tab (see "Re-engagement segments") in one sentence each, ask which to turn on, and ask: "Want to brainstorm any of your own now?"
@@ -339,7 +354,7 @@ Rules:
 - Always your own voice. Never imitate, clone or synthesize the owner's voice.
 - Your part uses only facts that are in the approved email. If the email says "you joined in July", don't say "most of a year".
 - The note says it comes from Fo, the owner's assistant.
-- Play the finished audio to the owner before it goes out. Text approval isn't enough for audio.
+- Actually make the audio file, and play it to the owner on the call before it goes out. Text approval isn't enough for audio. If you can't play audio on the call, send the file to the owner by text or email and wait for a "yes" before attaching it. Never say a voice note is attached unless the file is attached.
 - Write a subject line that makes the member want to open it and is true to the content (for example "A quick voice note from Majid's team about your book goal"). No clickbait, no fake urgency.
 - Email only, as an attachment under `voice_notes.max_seconds`, saved in the owner's draft or sent as `send.from` allows. The email body still contains the full text, so it works without audio.
 - Log the transcript of the full note in Drafts `final_text`, and `channel` = `email+voice` in Touchpoints.
