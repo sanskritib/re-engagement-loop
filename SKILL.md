@@ -50,16 +50,18 @@ Fo's actions are real. During install, the only things Fo should create are tabs
 
 A five-minute guided call on the fictional community, so a new owner hears the whole loop before it touches their own members. It uses ready-made drafts from `demo/coaching-skool/demo-call.md`, so Fo has nothing to compute and can call within a minute.
 
+**The demo's scenario:** the coach has told members that they use an assistant, Fo, for outreach, and that every message is the coach's own words (`community.members_informed: true`). So in the demo, Fo sends the test email itself, from its own address, with the voice note attached, signed as the coach's assistant (`send.from: fo`). The tester agrees to this by giving their email.
+
 **Claude, when the owner says yes:**
 1. Ask: "Who should get the real test email? Give a name and email address. It can be your own second address." This is the only message the demo can send.
 2. `ask_fo`: "Prepare the demo call for the re-engagement loop. Tester: <name>, <email>. Follow 'Demo call' in SKILL.md. Reply with the call doc link, and don't call yet."
 3. As soon as Fo replies, show the owner the link and say: "**Open this doc now.** It's what Fo will walk you through on the call. Fo is calling you now."
 4. `ask_fo`: "Call me now for the demo call." If the owner would rather talk in this app, use `start_fo_call` and give them the link instead.
-5. After the call, ask Fo what the owner decided, and report it in two lines. If the test email is in the owner's drafts, say: "It's in your Gmail drafts with the voice note. Open it and press send." If Fo sent it, say it can take a minute or two to arrive (check spam too). Don't ask Fo to send it again.
+5. After the call, ask Fo what the owner decided, and report it in two lines. If Fo sent the test email, say it's coming from Fo's address and can take a minute or two to arrive (check spam too). If it was saved to drafts instead, say where. Don't ask Fo to send it again.
 6. Offer the next step: "Want me to switch it to your own member sheet, or keep the demo running for a few days?"
 
 **Fo, when asked to prepare the demo call:**
-1. If the demo sheet doesn't exist yet, build it as in Step 0 (demo data). Put the tester's name, email and `channel` = `email` in the Tester row.
+1. If the demo sheet doesn't exist yet, build it as in Step 0 (demo data). Put the tester's name, email and `channel` = `email` in the Tester row. Use `send.from: fo` and `community.members_informed: true` for the demo, whatever the owner chose for their real community.
 2. Create a Google Doc called "Your call with Fo (demo)" from `demo/coaching-skool/demo-call.md`. Fill in `{TESTER}` (the tester's first name), `{OWNER}` (the owner's first name), `{DAY}` (today's weekday) and `{DATE}`. Add the four drafts to the Drafts tab with status `Checked`, and copy the check results into the Checks tab.
 3. Reply with the doc link. Don't call until you're asked.
 
@@ -67,7 +69,7 @@ A five-minute guided call on the fictional community, so a new owner hears the w
 1. "Hi <owner>, it's Fo. Have you got the call doc open? I'll go through it from the top." Wait until they have.
 2. Say the three numbers in "Today in three numbers" in plain words, then the agenda in one sentence: "Today: your test email first, then a renewal, a win, and one draft Claude flagged."
 3. **The tester's draft first.** Read it. Ask: "Want to add a sentence in your own words for a voice note?" Make the voice note (see "Voice notes over email") and play it back.
-4. Ask: "**Do you want me to send this email to <tester> now?**" Then follow their answer and `send.from`. If you can't send from their account and they haven't opted in to yours, save it to their drafts with the voice note attached and say: "It's in your drafts. Press send and it goes to <tester>." 
+4. Ask: "**Do you want me to send this email to <tester> now?**" If they say yes, send it from your own address with the voice note attached, signed as their assistant. Confirm it's in your Sent folder and say: "Sent. It's from me, as your assistant, and should arrive in a minute." Follow any other answer as usual: save to drafts, change, or skip.
 5. Offer the rest: "There are three more drafts from fictional members. Want me to go through them, or stop here?" On the flagged draft, explain Claude's flag in one sentence and ask whether to use the suggested fix.
 6. Close: read back every decision ("Your test email: sent. Niklas: saved to your drafts. Leonard and Wallace: no decision, still drafts."), then: "That's the demo. From tomorrow I'll call at <time> with real drafts."
 7. Log the call to the Run log with `step=demo`.
@@ -114,7 +116,7 @@ Anything already sent to members stays sent; a reset can't recall emails.
 These cannot be switched off in `rules.yaml`.
 
 1. **Nothing is sent without the owner's explicit approval** of that specific message. Approval happens on the call or in writing in the outreach doc. A summary email or text is never approval. Only a clear decision counts ("send it now", "save it to my drafts", "yes"). A draft with no decision stays `Drafted`, even if the call ends early. Before the call ends, read every decision back.
-2. **Only contact people in the member sheet**, through the channel listed for them, and never more often than `pick.min_days_between_contacts`. A member whose `channel` is `none` can be picked, drafted and reviewed, but is never sent anything; use it for demo rows and dry runs. Emails come from the owner. Fo saves each approved email to the owner's drafts and the owner presses send. Fo sends an email itself only if it can send from the owner's own account, or if the owner opted in at setup to sending from Fo's own address (`send.from: fo`). Fo's own address always says it's from Fo, the owner's assistant. Never switch to Fo's address without that opt-in.
+2. **Only contact people in the member sheet**, through the channel listed for them, and never more often than `pick.min_days_between_contacts`. A member whose `channel` is `none` can be picked, drafted and reviewed, but is never sent anything; use it for demo rows and dry runs. Emails come from the owner. Fo saves each approved email to the owner's drafts and the owner presses send. Fo sends an email itself only if it can send from the owner's own account, or if the owner opted in at setup to sending from Fo's own address (`send.from: fo`). That opt-in is only allowed when the owner has told members they use an assistant for outreach (`community.members_informed: true`). Fo's own address always says it's from Fo, the owner's assistant. Never switch to Fo's address without that opt-in.
 3. **Skip anyone who has opted out, is in the hold-back group, or is marked `skip`.**
 4. **Separate what you saw from what you assume.** "Last active 21 days ago" is seen. "Probably busy with work" is an assumption and must be labeled as one. Missing data means unknown, not inactive.
 5. **No guilt, pressure, fake urgency or invented offers.** The owner's tone settings apply on top of this.
@@ -281,7 +283,7 @@ The demo is a fictional paid coaching community, "Northstar Coaching Circle", wi
    - If you can't, ask the owner to connect their email at wajo.ai now. Never ask for a password in chat and never type one in yourself. Wait for them to say it's done, then run the read-only test again.
    - If they'd rather not connect it, set the adapter to hand-send and say what that means: you prepare each approved message and they paste it.
 6. Walk the owner through `setup/questions.md` (skip anything you already know from step 4) and write their answers to `rules.yaml` next to the sheet. Always ask these two, because they set defaults the owner can change by voice later:
-   - **How approved emails go out:** first check whether you can send from the owner's own email account. If you can, ask: "When you approve an email, should I send it straight away, or save it to your drafts?" Save it as `send.default`. If you can't (the usual case), say so plainly and ask: "I'll save approved emails to your drafts and you press send. That's the default. Or I can send them myself from my own address, signed as your assistant. Which do you prefer?" Save `send.from` (`owner` or `fo`) and `send.default` (`save_to_drafts`, or `send_now` only with `send.from: fo`).
+   - **How approved emails go out:** first check whether you can send from the owner's own email account. If you can, ask: "When you approve an email, should I send it straight away, or save it to your drafts?" Save it as `send.default`. If you can't (the usual case), say so plainly and ask: "I'll save approved emails to your drafts and you press send. That's the default. Or, if you've told your members you use an assistant for outreach, I can send them myself from my own address, signed as your assistant. Have you told them, and which do you prefer?" Save `community.members_informed`, `send.from` (`owner` or `fo`) and `send.default` (`save_to_drafts`, or `send_now` only with `send.from: fo`).
    - **Segments:** read out the segments in the "Segments & strategies" tab (see "Re-engagement segments") in one sentence each, ask which to turn on, and ask: "Want to brainstorm any of your own now?"
    Read the file back to them for confirmation.
 7. Create the two scheduled jobs (Step 1 and Step 3), and read back the times, what each does, and the phone number and email.

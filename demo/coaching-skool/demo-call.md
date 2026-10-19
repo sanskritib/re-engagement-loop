@@ -2,7 +2,7 @@
 
 **Keep this doc open during the call.** Fo walks through it from top to bottom, like a colleague presenting their notes. It changes the drafts here while you talk.
 
-*Demo: Northstar Coaching Circle is a fictional community. Only {TESTER}'s draft can reach a real inbox. Every other member is fictional, and nothing can be sent to them. The drafts and Claude's checks here are ready-made samples. In a real run, Fo writes the drafts at night and Claude checks them before your call.*
+*Demo: Northstar Coaching Circle is a fictional community. Only {TESTER}'s draft can reach a real inbox. Every other member is fictional, and nothing can be sent to them. In this community, members have been told the coach uses an assistant, Fo, for outreach, so Fo sends the test email itself, signed as {OWNER}'s assistant. The drafts and Claude's checks here are ready-made samples. In a real run, Fo writes the drafts at night and Claude checks them before your call.*
 
 ## Today in three numbers
 

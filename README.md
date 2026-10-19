@@ -38,7 +38,7 @@ You need a Wajo account on the OG Fo plan with Google (Drive and Gmail) connecte
 
 **Easiest: ask Claude.** Add this repo's `SKILL.md` as a skill in Claude (or just share the repo link), make sure Fo's MCP is connected (`https://mcp.api.wajo.ai/fo`), and say: *"Install the re-engagement loop for me using Fo. My member sheet is <link>."* To try it first, say *"…using Fo, with the demo data"* instead: Fo builds a fictional 157-member coaching community in your own Drive (see [`demo/README.md`](demo/README.md)), and asks whose email should receive the real test message. Claude sends the install to Fo, relays Fo's setup questions to you, and sets up the checker.
 
-**Right after install, Claude offers a five-minute demo call.** You give a test email address (your own second address works), Claude gives you the call doc to open, and Fo calls. It covers three numbers, your test email first with a voice note, then: *"Do you want me to send this email to your tester now?"* It lands in your drafts with the voice note, and you press send. The ready-made demo drafts mean Fo can call within a minute.
+**Right after install, Claude offers a five-minute demo call.** You give a test email address (your own second address works), Claude gives you the call doc to open, and Fo calls. It covers three numbers, your test email first with a voice note, then: *"Do you want me to send this email to your tester now?"* Say yes, and Fo sends it from its own address with the voice note, signed as your assistant. The ready-made demo drafts mean Fo can call within a minute.
 
 To see a full run on real data instead of waiting for the night, say *"run the loop now"*: Fo drafts, Claude checks, and Fo calls you straight away.
 
@@ -78,7 +78,7 @@ These are in [`SKILL.md`](SKILL.md) and can't be switched off:
 - New segments or strategies from brainstorming are added only after you approve them.
 - The agents never change your rules; they propose changes on the call.
 
-We recommend telling your members that you use an assistant to manage outreach.
+Tell your members that you use an assistant for outreach and that every message is your own words. The coach who inspired this already has. Once you have, you can let Fo send approved emails itself, signed as your assistant. Until then, approved emails land in your drafts and you press send. The demo assumes members have been told, so Fo sends the test email itself.
 
 ## Files
 

@@ -15,6 +15,7 @@ community:
   platform: skool
   mode: read_only                    # read_only: members come from an export, nothing happens inside the platform
                                      # connected: Fo reads members through an official integration the owner connected
+  members_informed: true             # members have been told the owner uses an assistant (Fo) for outreach; required for send.from: fo
   what_members_get: "weekly group coaching calls and accountability on personal goals"
 
 files:
