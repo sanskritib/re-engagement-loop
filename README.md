@@ -4,7 +4,7 @@ A packaged skill for anyone who runs a paid community or audience (coaches, comm
 
 Every night, **Fo** reads your member list and sorts everyone into **re-engagement segments**: renewal at risk, never started, went quiet, fading, recent win, goal stalled, lurker, skipping calls, win-back. Each segment has its own strategy, kept in a sheet you can edit, and you can **brainstorm new ones with Fo** any time. Fo drafts a personal email for the most urgent people in each segment. Before morning, **Claude** checks every draft against your rules and updates the scorecard.
 
-Then Fo **calls you**, while you follow along in a **call doc** it made for you, the way you'd follow someone's slides. It opens with three numbers that matter today ("4 members renew this month and have gone quiet; 28 never got started; 5 had a win"), then walks through each draft by name ("Hana's Monday-morning draft") and changes it while you talk. For each one you say **"send it now"** or **"save it to my drafts"**, and Fo asks: **"Should I add a voice note?"** The voice note quotes you word for word, then Fo speaks as your assistant, and it arrives as an audio file with the email.
+Then Fo **calls you**, while you follow along in a **call doc** it made for you, the way you'd follow someone's slides. It opens with three numbers that matter today ("4 members renew this month and have gone quiet; 28 never got started; 5 had a win"), then walks through each draft by name ("Hana's Monday-morning draft") and changes it while you talk. For each one you say yes, change it or skip, and Fo asks: **"Should I add a voice note?"** The voice note quotes you word for word, then Fo speaks as your assistant. Approved emails land in your drafts with the voice note attached; you press send.
 
 No dashboard to check. The loop comes to you: a phone call, a sheet and a doc you can edit, and an email or text if you miss the call.
 
@@ -38,7 +38,7 @@ You need a Wajo account on the OG Fo plan with Google (Drive and Gmail) connecte
 
 **Easiest: ask Claude.** Add this repo's `SKILL.md` as a skill in Claude (or just share the repo link), make sure Fo's MCP is connected (`https://mcp.api.wajo.ai/fo`), and say: *"Install the re-engagement loop for me using Fo. My member sheet is <link>."* To try it first, say *"…using Fo, with the demo data"* instead: Fo builds a fictional 157-member coaching community in your own Drive (see [`demo/README.md`](demo/README.md)), and asks whose email should receive the real test message. Claude sends the install to Fo, relays Fo's setup questions to you, and sets up the checker.
 
-**Right after install, Claude offers a five-minute demo call.** You give a test email address (your own second address works), Claude gives you the call doc to open, and Fo calls. It covers three numbers, your test email first with a voice note, then: *"Do you want me to send this email to your tester now?"* The ready-made demo drafts mean Fo can call within a minute.
+**Right after install, Claude offers a five-minute demo call.** You give a test email address (your own second address works), Claude gives you the call doc to open, and Fo calls. It covers three numbers, your test email first with a voice note, then: *"Do you want me to send this email to your tester now?"* It lands in your drafts with the voice note, and you press send. The ready-made demo drafts mean Fo can call within a minute.
 
 To see a full run on real data instead of waiting for the night, say *"run the loop now"*: Fo drafts, Claude checks, and Fo calls you straight away.
 
@@ -68,7 +68,7 @@ The demo is a fictional coaching community with three simulated weeks of the loo
 These are in [`SKILL.md`](SKILL.md) and can't be switched off:
 
 - Nothing is sent without your approval of that specific message. A draft with no decision stays a draft, and Fo reads back every decision before hanging up.
-- Emails go from your own account, and are marked sent only once they're in your Sent folder.
+- Approved emails land in your drafts and you press send, so they come from you. Fo sends from its own address, signed as your assistant, only if you choose that at setup. Nothing is marked sent until it's in a Sent folder.
 - Only people in your sheet are contacted, and no more often than your limit.
 - Opted-out, skipped and held-back members are never contacted.
 - Guesses are labeled as guesses; missing data counts as unknown, not inactive.

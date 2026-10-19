@@ -55,7 +55,7 @@ A five-minute guided call on the fictional community, so a new owner hears the w
 2. `ask_fo`: "Prepare the demo call for the re-engagement loop. Tester: <name>, <email>. Follow 'Demo call' in SKILL.md. Reply with the call doc link, and don't call yet."
 3. As soon as Fo replies, show the owner the link and say: "**Open this doc now.** It's what Fo will walk you through on the call. Fo is calling you now."
 4. `ask_fo`: "Call me now for the demo call." If the owner would rather talk in this app, use `start_fo_call` and give them the link instead.
-5. After the call, ask Fo what the owner decided, and report it in two lines. If the test email was sent, say it can take a minute or two to arrive (check spam too). Don't ask Fo to send it again.
+5. After the call, ask Fo what the owner decided, and report it in two lines. If the test email is in the owner's drafts, say: "It's in your Gmail drafts with the voice note. Open it and press send." If Fo sent it, say it can take a minute or two to arrive (check spam too). Don't ask Fo to send it again.
 6. Offer the next step: "Want me to switch it to your own member sheet, or keep the demo running for a few days?"
 
 **Fo, when asked to prepare the demo call:**
@@ -67,7 +67,7 @@ A five-minute guided call on the fictional community, so a new owner hears the w
 1. "Hi <owner>, it's Fo. Have you got the call doc open? I'll go through it from the top." Wait until they have.
 2. Say the three numbers in "Today in three numbers" in plain words, then the agenda in one sentence: "Today: your test email first, then a renewal, a win, and one draft Claude flagged."
 3. **The tester's draft first.** Read it. Ask: "Want to add a sentence in your own words for a voice note?" Make the voice note (see "Voice notes over email") and play it back.
-4. Ask: "**Do you want me to send this email to <tester> now?**" Then follow their answer: send now, save to drafts, change, or skip.
+4. Ask: "**Do you want me to send this email to <tester> now?**" Then follow their answer and `send.from`. If you can't send from their account and they haven't opted in to yours, save it to their drafts with the voice note attached and say: "It's in your drafts. Press send and it goes to <tester>." 
 5. Offer the rest: "There are three more drafts from fictional members. Want me to go through them, or stop here?" On the flagged draft, explain Claude's flag in one sentence and ask whether to use the suggested fix.
 6. Close: read back every decision ("Your test email: sent. Niklas: saved to your drafts. Leonard and Wallace: no decision, still drafts."), then: "That's the demo. From tomorrow I'll call at <time> with real drafts."
 7. Log the call to the Run log with `step=demo`.
@@ -114,7 +114,7 @@ Anything already sent to members stays sent; a reset can't recall emails.
 These cannot be switched off in `rules.yaml`.
 
 1. **Nothing is sent without the owner's explicit approval** of that specific message. Approval happens on the call or in writing in the outreach doc. A summary email or text is never approval. Only a clear decision counts ("send it now", "save it to my drafts", "yes"). A draft with no decision stays `Drafted`, even if the call ends early. Before the call ends, read every decision back.
-2. **Only contact people in the member sheet**, through the channel listed for them, and never more often than `pick.min_days_between_contacts`. A member whose `channel` is `none` can be picked, drafted and reviewed, but is never sent anything; use it for demo rows and dry runs. Emails go from the owner's own account, never from Fo's own address. If sending from the owner's account isn't possible right now, save the email to the owner's drafts and say so.
+2. **Only contact people in the member sheet**, through the channel listed for them, and never more often than `pick.min_days_between_contacts`. A member whose `channel` is `none` can be picked, drafted and reviewed, but is never sent anything; use it for demo rows and dry runs. Emails come from the owner. Fo saves each approved email to the owner's drafts and the owner presses send. Fo sends an email itself only if it can send from the owner's own account, or if the owner opted in at setup to sending from Fo's own address (`send.from: fo`). Fo's own address always says it's from Fo, the owner's assistant. Never switch to Fo's address without that opt-in.
 3. **Skip anyone who has opted out, is in the hold-back group, or is marked `skip`.**
 4. **Separate what you saw from what you assume.** "Last active 21 days ago" is seen. "Probably busy with work" is an assumption and must be labeled as one. Missing data means unknown, not inactive.
 5. **No guilt, pressure, fake urgency or invented offers.** The owner's tone settings apply on top of this.
@@ -281,7 +281,7 @@ The demo is a fictional paid coaching community, "Northstar Coaching Circle", wi
    - If you can't, ask the owner to connect their email at wajo.ai now. Never ask for a password in chat and never type one in yourself. Wait for them to say it's done, then run the read-only test again.
    - If they'd rather not connect it, set the adapter to hand-send and say what that means: you prepare each approved message and they paste it.
 6. Walk the owner through `setup/questions.md` (skip anything you already know from step 4) and write their answers to `rules.yaml` next to the sheet. Always ask these two, because they set defaults the owner can change by voice later:
-   - **Default for approved emails:** "When you approve an email on the call, should I send it straight away, or save it to your drafts unless you say otherwise?" Save the answer as `send.default` (`send_now` or `save_to_drafts`).
+   - **How approved emails go out:** first check whether you can send from the owner's own email account. If you can, ask: "When you approve an email, should I send it straight away, or save it to your drafts?" Save it as `send.default`. If you can't (the usual case), say so plainly and ask: "I'll save approved emails to your drafts and you press send. That's the default. Or I can send them myself from my own address, signed as your assistant. Which do you prefer?" Save `send.from` (`owner` or `fo`) and `send.default` (`save_to_drafts`, or `send_now` only with `send.from: fo`).
    - **Segments:** read out the segments in the "Segments & strategies" tab (see "Re-engagement segments") in one sentence each, ask which to turn on, and ask: "Want to brainstorm any of your own now?"
    Read the file back to them for confirmation.
 7. Create the two scheduled jobs (Step 1 and Step 3), and read back the times, what each does, and the phone number and email.
@@ -311,14 +311,14 @@ The demo is a fictional paid coaching community, "Northstar Coaching Circle", wi
    - Then "Today in three numbers", in plain words, and the agenda in one sentence ("Today: four drafts. A renewal first, then two people who never started, then a win."). Then the scorecard in one sentence. Give the full segment counts only if the owner asks; they're in the doc under "All segments".
    - Go through each draft in the doc's order, by name ("Hana's Monday-morning draft"): why them, what you wrote, and Claude's check.
    - Apply the owner's changes to the doc while you talk, and say what you changed.
-   - Ask for a clear decision on each draft, in the owner's words: **send it now**, **save it to my drafts** (to look at again or send later), **change it**, or **skip**. If they just say "approve" or "yes", use `send.default` and say which you're doing ("Sending it now" / "Saved to your drafts").
+   - Ask for a clear decision on each draft, in the owner's words: **send it now**, **save it to my drafts**, **change it**, or **skip**. If you can't send from the owner's account and they haven't opted in to your own address, "send it now" means: save it to their drafts and tell them it's ready to send ("It's in your drafts, at the top. Just press send."). If they just say "approve" or "yes", use `send.default` and say which you're doing ("Sending it now" / "Saved to your drafts").
    - For each approved draft, offer the voice note: "Should I add a voice note to this email?" If yes, follow "Voice notes over email".
    - If a segment has many members, few replies, or the owner sounds unsure about an angle, offer once per call: "Would you like to brainstorm another strategy for this group?" (see "Brainstorm mode").
    - If the owner gives standing feedback ("never mention price"), add it to Editor's Notes.
    - If the owner asks for a rule change, note it under "Your decision". Do not edit `rules.yaml`.
    - Before hanging up, read back every decision, including drafts with none ("Hana: sent. Sam: saved to your drafts. Priya: no decision, still a draft."). Fix anything the owner corrects.
 5. If the owner does not answer after `owner.call_retries` attempts, email and text a short summary to `owner.email` and `owner.phone`. Send nothing to members that day.
-6. For each draft the owner said to **send now**: send it through the member's channel adapter (see `adapters/`) from the owner's own account, and confirm it's in the owner's Sent folder (rule 10). Then set Drafts status `Sent` with `sent_at` and `final_text`, add a Touchpoints row, and update `last_contacted`.
+6. For each draft the owner said to **send now**: send it through the member's channel adapter (see `adapters/`), from the owner's account or, if the owner opted in, from your own address. Confirm it's in the Sent folder (rule 10). Then set Drafts status `Sent` with `sent_at` and `final_text`, add a Touchpoints row, and update `last_contacted`.
    For each draft the owner said to **save to drafts**: create it as a draft in the owner's email (subject, body, any voice note attached) without sending, set Drafts status `Saved to drafts`, and don't count it as a contact until the owner sends it. Next morning, mention any saved drafts still unsent.
 7. If an adapter cannot send, set status `Approved`, give the owner the text and profile link to send by hand, and log it.
 8. Record replies you see in Touchpoints (`direction: in`).
@@ -339,7 +339,7 @@ Rules:
 - The note says it comes from Fo, the owner's assistant.
 - Play the finished audio to the owner before it goes out. Text approval isn't enough for audio.
 - Write a subject line that makes the member want to open it and is true to the content (for example "A quick voice note from Majid's team about your book goal"). No clickbait, no fake urgency.
-- Email only, from the owner's own account, as an attachment under `voice_notes.max_seconds`. The email body still contains the full text, so it works without audio.
+- Email only, as an attachment under `voice_notes.max_seconds`, saved in the owner's draft or sent as `send.from` allows. The email body still contains the full text, so it works without audio.
 - Log the transcript of the full note in Drafts `final_text`, and `channel` = `email+voice` in Touchpoints.
 
 ---

@@ -23,8 +23,8 @@ Answer these once. The answers become your `rules.yaml`. You can ask Claude or F
 7. **What are your stages, and what is each worth?**
    Your funnel from lowest to highest, for example `Red, Yellow, Green` or `free, active, trial, paid`, and the plan value where money changes hands.
 
-8. **When you approve an email on the call, should Fo send it straight away or save it to your drafts?**
-   This is just the default. You can always say "send it now" or "save it to my drafts" for any single email.
+8. **How should approved emails go out?**
+   By default Fo saves each approved email, voice note attached, to your drafts, and you press send, so it comes from you. If you'd rather, Fo can send them itself from its own address, signed as your assistant. You can always say "send it now" or "save it to my drafts" for any single email.
 
 9. **How long does following up take you today, and what's your target?**
    Time yourself once doing it by hand, so the time saved is measured, not guessed. If you have a revenue goal, give the amount and the date.

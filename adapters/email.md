@@ -13,7 +13,7 @@
 
 The owner chooses a default at setup (`send.default`), and can override it per message on the call:
 
-- **"Send it now"**: Fo sends the approved email from the owner's account straight away.
+- **"Send it now"**: Fo sends the approved email straight away, but only if it can send from the owner's account, or the owner opted in to Fo's own address (`send.from: fo`). Otherwise Fo saves it to the owner's drafts and says it's ready to send.
 - **"Save it to my drafts"**: Fo creates it as a draft in the owner's email, ready to review or send later. Nothing goes out.
 
 Every email:
@@ -22,7 +22,7 @@ Every email:
 - plain text, no tracking pixels, no mailing-list tools;
 - with a voice note attached when the owner said yes to one and approved the audio (see `SKILL.md`, "Voice notes over email").
 
-Send only from the owner's own account, never from Fo's own address. If that isn't possible right now, save the email to the owner's drafts and say so.
+**From whom.** By default Fo saves to the owner's drafts and the owner sends, so every email comes from the owner. Fo's own address is used only with `send.from: fo`, chosen at setup. Those emails say they're from Fo, the owner's assistant, and are signed for the owner.
 
 After sending, check that the email is in the owner's Sent folder before calling it sent. The recipient can take a minute or two to see it. Never send again without checking the Sent folder first. Then Fo records `sent_at` in Drafts, adds a Touchpoints row (`direction: out`), and updates `last_contacted`.
 

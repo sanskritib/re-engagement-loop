@@ -62,6 +62,7 @@ pick:
 # How members are reached. The community platform is only read from, never messaged.
 send:
   channels: ["email"]          # from the owner's own email account
+  from: owner                  # owner: saved to the owner's drafts (or sent from their account if Fo can). fo: Fo sends from its own address, signed as the owner's assistant
   default: save_to_drafts      # asked at setup: send_now or save_to_drafts. The owner can always say otherwise on the call
   subject_style: "short, specific to the person, honest; no clickbait"
 
